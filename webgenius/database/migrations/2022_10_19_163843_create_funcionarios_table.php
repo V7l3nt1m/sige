@@ -13,21 +13,17 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('aluno', function (Blueprint $table) {
+        Schema::create('funcionarios', function (Blueprint $table) {
             $table->id();
-            $table->string('nome_aluno');
+            $table->string('nome',30);
             $table->date('data_nasc');
-            $table->string('email_aluno');
-            $table->string('telefone_aluno');
             $table->string('genero');
-            $table->double('nota_aluno');
-            $table->float('num_faltas',3);
-            $table->boolean('estado_aprovado');
-            $table->double('propina');
-            $table->string('imagem_aluno');
-            $table->string('senha_aluno');
-         
-           
+            $table->string('tipo_fun',10);
+            $table->string('telefone',20);
+            $table->string('email_fun');
+            $table->string('folha_salario');
+            $table->decimal('faltas');
+            $table->string('imagem_fun'); 
             $table->timestamps();
         });
     }
@@ -39,6 +35,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('aluno');
+        Schema::dropIfExists('funcionarios');
     }
 };
