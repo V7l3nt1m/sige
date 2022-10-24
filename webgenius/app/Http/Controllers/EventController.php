@@ -12,4 +12,8 @@ class EventController extends Controller
 
     }
 
+    public function register(){
+        return view('/auth/register');
+    }
+
 }

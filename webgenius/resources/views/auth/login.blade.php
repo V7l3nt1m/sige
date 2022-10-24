@@ -21,7 +21,7 @@
     <!-- Style -->
     <link rel="stylesheet" href="css/style.css">
 
-    <title>Login #7</title>
+    <title>SIGE - Login</title>
   </head>
   <body>
   
@@ -42,7 +42,7 @@
            
             
                 <x-slot name="logo">
-                    <h1 class="logo me-auto"><a href="/">Webgenius</a></h1>
+                    <h1 class="logo me-auto"><a href="/">SIGE</a></h1>
                 </x-slot>
         
                 <x-jet-validation-errors class="mb-4" />
@@ -100,7 +100,7 @@
   </div>
   <footer>
     <div id="copyright">
-      &copy; Copyright <strong><span>Webgenius</span></strong>. All Rights Reserved
+      &copy; Copyright <strong><span>SIGE</span></strong>. All Rights Reserved
     </div>
   </footer>
   

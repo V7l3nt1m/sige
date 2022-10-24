@@ -27,6 +27,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'permissao',
     ];
 
     /**
@@ -41,6 +42,7 @@ class User extends Authenticatable
         'two_factor_secret',
     ];
 
+    protected $guarded = [];
     /**
      * The attributes that should be cast.
      *

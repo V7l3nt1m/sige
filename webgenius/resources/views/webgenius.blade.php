@@ -5,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Webgenius</title>
+  <title>SIGE</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -33,7 +33,7 @@
   <header id="header" class="fixed-top ">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="/">Webgenius</a></h1>
+      <h1 class="logo me-auto"><a href="/">SIGE</a></h1>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -47,7 +47,7 @@
       <div class="row">
         <div class="col-lg-6 d-flex flex-column justify-content-center pt-4 pt-lg-0 order-2 order-lg-1" data-aos="fade-up" data-aos-delay="200">
           <h1>A melhor solução de gestão para a sua escola</h1>
-          <h2>Webgenius - Sistema Académico</h2>
+          <h2>SIGE - Sistema Integrado de Gestão Escolar</h2>
           <div class="d-flex justify-content-center justify-content-lg-start">
             <a href="/login" class="btn-get-started scrollto">Iniciar Sessão</a>
           </div>
@@ -109,7 +109,7 @@
         <div class="row">
 
           <div class="col-lg-3 col-md-6 footer-contact col-sm-6 col-6">
-            <h3>Webgenius</h3>
+            <h3>SIGE</h3>
             <p>
               A108 Adam Street <br>
               New York, NY 535022<br>
@@ -159,7 +159,7 @@
 
     <div class="container footer-bottom clearfix">
       <div class="copyright">
-        &copy; Copyright <strong><span>Webgenius</span></strong>. All Rights Reserved
+        &copy; Copyright <strong><span>SIGE</span></strong>. All Rights Reserved
       </div>
       <div class="credits">
       </div>

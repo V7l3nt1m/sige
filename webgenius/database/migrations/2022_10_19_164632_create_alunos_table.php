@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('alunos', function (Blueprint $table) {
             $table->id();
+            $table->string('num_processo');
             $table->string('nome_aluno');
-            $table->date('data_nasc');
+            $table->dateTime('data_nasc');
             $table->string('email_aluno');
             $table->string('telefone_aluno');
             $table->string('genero');

@@ -17,6 +17,7 @@ return [
         'guard' => 'web',
         'passwords' => 'users',
         'name' => 'users',
+        'permissao' => 'users',
     ],
 
     /*

@@ -9,7 +9,7 @@ class TesourariaController extends Controller
 {
     public function index(){
             $usuario = auth()->user();
-            if($usuario->name === "valentim"){
+            if($usuario->permissao === "tesouraria"){
                 return view('tesouraria');
             }else{
                 return view('acessdenied');
