@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Aluno;
+use App\Models\Turma;
+use App\Models\Disciplina;
+use App\Models\Curso;
 use App\Models\Funcionario;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -19,9 +22,21 @@ class PCAController extends Controller
     }
 
     public function cadasaluno(){
+
+        $search2 = request('search2');
+
+        if($search2){
+
+            $alunos = Aluno::where([
+                ['nome_aluno', 'like', '%'.$search2.'%']
+            ])->get();
+        }else{
+            $alunos = Aluno::all();
+        }
         $user = auth()->user();
-        return view('cadasaluno', ['user' => $user]);
+        return view('cadasaluno', ['user' => $user, 'alunos' => $alunos, 'search2' => $search2]);
     }
+
 
     public function store_alunos(Request $req){
         $aluno1 = new Aluno;
@@ -64,7 +79,8 @@ class PCAController extends Controller
     }
 
     public function cadafuncionario(){
-        return view('cadafuncionario');
+        $user = auth()->user();
+        return view('cadafuncionario', ['user' => $user]);
     }
 
     public function store_funcionarios(Request $req){
@@ -123,8 +139,67 @@ class PCAController extends Controller
         $allfunc = Funcionario::all();
         $user = auth()->user();
         return view('permissoes', ['search' => $search, 'funcionarios' => $funcionarios, 'allfunc' => $allfunc, 'user' => $user ]);
-    }   
+    }  
+    //cadastro de turmas
+    public function turmas(){
+        $user = auth()->user();
+        return view('cadaturma', ['user' => $user]);
+    }
+  
+    public function cadaturmas(Request $request){
+            $turmas = new Turma;
+            $turmas->nome_turma = $request->nome_turma;
+            $turmas->save();
 
-    
-   
+            return redirect('/pcaadmin/turmas');
+    }
+
+    //Cadastro de disciplinas
+    public function disciplinas(){
+        $user = auth()->user();
+        return view('disciplinas', ['user' => $user]);
+    }
+
+    public function cadasdisciplinas(Request $request){
+        $disciplina = new Disciplina;
+
+        $disciplina->nome_disc = $request->nome_disciplina;
+
+        $disciplina->save();
+
+        return redirect('pcaadmin/disciplinas');
+    }
+
+    //Cadastro de cursos
+    public function cursos(){
+        $user = auth()->user();
+        return view('cursos', ['user' => $user]);
+    }
+
+    public function cadascursos(Request $request){
+        $cursos = new Curso;
+
+        $cursos->nome_curso = $request->nome_curso;
+
+        $cursos->save();
+
+        return redirect('pcaadmin/cursos');
+    }
+
+
+    //definicoes
+    public function definicao(){
+        $user = auth()->user();
+        return view('definicoes', ['user' => $user]);
+    }
+
+    public function updateinfo(Request $re){
+            $user = auth()->user();
+            User::findOrFail($re->id)->update($re->all());
+            return redirect('/pcaadmin/definições');
+    }
 }
+
+
+
+

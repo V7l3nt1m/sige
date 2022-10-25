@@ -226,7 +226,7 @@
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
+              <a class="dropdown-item d-flex align-items-center" href="{{route('definicao')}}">
                 <i class="bi bi-gear"></i>
                 <span>Account Settings</span>
               </a>
@@ -270,7 +270,7 @@
 
       <li class="nav-item">
         <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-menu-button-wide"></i><span>Cadastro</span><i class="bi bi-chevron-down ms-auto"></i>
+          <i class="bi bi-menu-button-wide"></i><span>Serviços</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
@@ -284,18 +284,18 @@
             </a>
           </li>
           <li>
-            <a href="components-badges.html">
+            <a href="{{route('turmas')}}">
               <i class="bi bi-circle"></i><span>Turmas</span>
             </a>
           </li>
           <li>
-            <a href="components-breadcrumbs.html">
+            <a href="{{route('disciplinas')}}">
               <i class="bi bi-circle"></i><span>Disciplinas</span>
             </a>
           </li>
           <li>
-            <a href="components-buttons.html">
-              <i class="bi bi-circle"></i><span>Curso</span>
+            <a href="{{route('cursos')}}">
+              <i class="bi bi-circle"></i><span>Cursos</span>
             </a>
           </li>
           
@@ -343,8 +343,6 @@
 
     @yield('content')
     
-    
-
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
@@ -354,7 +352,8 @@
     </div>
    
   </footer><!-- End Footer -->
-
+  
+  <div id="preloader"></div>
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <!-- Vendor JS Files -->
@@ -369,7 +368,7 @@
 
   <!-- Template Main JS File -->
   <script src="/estilo_pca/assets/js/main.js"></script>
-
+  
 </body>
 
 </html>

@@ -6,9 +6,6 @@
 
 <div class="col-xxl-4 col-md-6">
     <div class="card card2">
-
-      
-
       <div class="card-body">
         <h4 class="titulo">Permissoes dos Funcionários</h4>
             <form action="/pcaadmin/permissoes" method="GET">
@@ -24,40 +21,37 @@
                           <tr>
                             <th scope="col">#</th>
                             <th scope="col">Nome</th>
-                            <th scope="col">Função</th>
-                            <th scope="col">Acções</th>
+                            <th scope="col">Telefone</th>
+                            <th scope="col">Função/Permissão</th>
                             <th scope="col">Alterar permissoes</th>
-                            <th scope="col">Fotográfia</th>
                           </tr>
                         </thead>
                         <tbody>
-                           
+                          @foreach ($funcionarios as $funcionario)
                           <tr>
-                            @foreach ($funcionarios as $funcionario)
+                           
                             <th scope="row">{{$loop->index+1}}</th>
                             <td>{{$funcionario->nome}}</td>
+                            <td>{{$funcionario->telefone}}</td>
                             <td>{{$funcionario->tipo_fun}}</td>
-                            <td>
-                                <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                    <button type="button" class="btn btn-danger">Eliminar</button>
-                                    <button type="button" class="btn btn-primary">Actualizar</button>
-                                  </div>
-                            </td>
                             <td>
                                 <form action="" method="POST">
                                     @csrf
                                     @method('PUT')
-                                    <select name="" id="" class="form-control">
-                                        <option value="" selected disabled> Permissões</option>
-
-                                    </select>
+                                    <div class="btn-group" role="group">
+                                      <select name="" id="" class="form-control">
+                                          <option value="" selected disabled> Permissões</option>
+                                      </select>
+                                      <input type="submit" value="Alterar" class="btn btn-primary">
+                                    </div>
                                 </form>
+                                
                             </td>
                             
-                                    @endforeach
-                           
+                                    
+                            
                           </tr>
-                          
+                          @endforeach
                         </tbody>
                         
                       </table>
@@ -80,10 +74,9 @@
                               <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Nome</th>
+                                <th scope="col">Telefone</th>
                                 <th scope="col">Função/Permissão</th>
-                                <th scope="col">Acções</th>
                                 <th scope="col">Alterar permissoes</th>
-                                <th scope="col">Fotográfia</th>
                               </tr>
                             </thead>
                             <tbody>
@@ -91,21 +84,18 @@
                               <tr>
                                 <th scope="row">{{$loop->index+1}}</th>
                                 <td>{{$todosfuncionarios->nome}}</td>
+                                <td>{{$todosfuncionarios->telefone}}</td>
                                 <td>{{$todosfuncionarios->tipo_fun}}</td>
-                                <td>
-                                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                        <button type="button" class="btn btn-danger">Eliminar</button>
-                                        <button type="button" class="btn btn-primary">Actualizar</button>
-                                      </div>
-                                </td>
                                 <td>
                                     <form action="" method="POST">
                                         @csrf
                                         @method('PUT')
-                                        <select name="" id="" class="form-control">
-                                            <option value="" selected disabled> Permissões</option>
-    
-                                        </select>
+                                        <div class="btn-group" role="group">
+                                          <select name="" id="" class="form-control">
+                                              <option value="" selected disabled> Permissões</option>
+                                          </select>
+                                          <input type="submit" value="Alterar" class="btn btn-primary">
+                                        </div>
                                     </form>
                                 </td>
                                 

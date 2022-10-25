@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Aluno extends Model
 {
+    use HasFactory;
     
     protected $fillable = [
         'nome_aluno',

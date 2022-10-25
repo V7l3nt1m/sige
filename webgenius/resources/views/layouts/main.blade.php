@@ -15,7 +15,7 @@
 
     <footer>
         <div class="copyright">
-            &copy; Copyright @2022<strong><span>Webgenius</span></strong>. All Rights Reserved
+            &copy; Copyright @2022<strong><span>SIGE</span></strong>. All Rights Reserved
           </div>
     </footer>
 </body>
