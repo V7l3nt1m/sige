@@ -14,4 +14,12 @@ class Disciplina extends Model
     ];
 
     protected $guarded = [];
+
+    public function cursos(){
+        return $this->belongsToMany('App\Models\Curso');
+    }
+    public function classes(){
+        return $this->belongsToMany('App\Models\Classe');
+    }
+
 }

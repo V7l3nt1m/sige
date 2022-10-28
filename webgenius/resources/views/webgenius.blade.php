@@ -51,6 +51,7 @@
           <div class="d-flex justify-content-center justify-content-lg-start">
             <a href="/login" class="btn-get-started scrollto">Iniciar Sessão</a>
           </div>
+          
         </div>
         <div class="col-lg-6 order-1 order-lg-2 hero-img" data-aos="zoom-in" data-aos-delay="200">
           <img src="assets/img/hero-img.png" class="img-fluid animated" alt="">
@@ -68,28 +69,69 @@
       <div class="container" data-aos="fade-up">
 
         <div class="section-title">
-          <h2>Sobre nós</h2>
+          <h2 id="SobreNos">Sobre nós</h2>
         </div>
 
-        <div class="row content">
-          <div class="col-lg-6">
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-              magna aliqua.
+       
+          
+            <h3 style="text-align: center">Funcionalidades do software SIGE</h3>
+            <p style="text-align: justify">
+             O software SIGE (Sistema Integrado de Gestão Escolar) é capaz de automatizar as áreas financeira, pedagógica e acadêmica...
             </p>
-            <ul>
-              <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
-              <li><i class="ri-check-double-line"></i> Duis aute irure dolor in reprehenderit in voluptate velit</li>
-              <li><i class="ri-check-double-line"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat</li>
-            </ul>
+            <p style="text-align: justify">O nosso programa é capaz de realizar tarefas relacionadas às cobranças e movimentação do caixa, além de também lidar com aspectos como cálculo
+              de notas, emissão de boletins e outros documentos acadêmicos.
+            </p>
+            <div class="row content">
+              <div class="col-lg-6">
+            <h3>Financeira</h3>
+            <p>
+              <ul>
+                <li>-Emissão de boletos de pagamento;</li>
+                  <li>-Controle de fluxo de caixa (renda e despessa);</li>
+                    <li>-Emissão de nota fiscal electrónica (impostos);</li>
+                      <li>-Faz o controle dos bolsistas personalizado por percentual (Qualquer percentual que a instituição definir);</li>
+              </ul>
+              <br>
+            </p>
+            <h3>Administrativa</h3>
+            <p>
+              <ul>
+                <li>-Emissão de boletins (Agenda Digital);</li>
+                  <li>-Calendário de aulas e conteúdos (Aula Online);</li>
+                    <li>-Lançamento de nota e frequência (Agenda Digital);</li>
+                      <li>-Possibilidade dos professores fazerem o lançamento de notas em qualquer lugar onde estiverem (Com permissão pedagógica ou entidades
+                        superiores da instituição);</li>
+                      <li>- Histórico financeiro do aluno</li>
+              </ul>
+            </p>
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0">
+            <h3>Acadêmica</h3>
             <p>
-              Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-              velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-              culpa qui officia deserunt mollit anim id est laborum.
+             <ul>
+              <li>-Criação de relátorios e documentos;</li>
+              <li>-Criação de cartão automática a apartir de matrícula e confirmação;</li>
+              <li>-Consulta de notas online apartir da conta do aluno</li>
+              <li>-Pedido de declaração e certificado</li>
+             </ul>
             </p>
-            <a href="#" class="btn-learn-more">Learn More</a>
+            <br>
+
+            <h3>Administrativa</h3>
+            <p>
+             <ul>
+              <li><strong>-PCA</strong></li>
+              <li>É a hierarquia máxima de instituição. Tem controle de tudo e é o responsavel por permitir outras partes administrativas</li>
+              <li><strong>-Director Geral</strong></li>
+              <li>Ele é a segunda entidade superior da instituição.</li>
+              <li>Ele faz o controle da escola e ele também da algumas permissões.</li>
+              <li><strong>-Director Pedagógica</strong></li>
+              <li>Tem todo o controle da parte pedagógica da escola.</li>
+              <li><strong>-Director Administrativo</strong></li>
+              <li><strong>-Secretaria</strong></li>
+
+             </ul>
+            </p>
           </div>
         </div>
 
@@ -111,45 +153,41 @@
           <div class="col-lg-3 col-md-6 footer-contact col-sm-6 col-6">
             <h3>SIGE</h3>
             <p>
-              A108 Adam Street <br>
-              New York, NY 535022<br>
-              United States <br><br>
-              <strong>Phone:</strong> +1 5589 55488 55<br>
-              <strong>Email:</strong> info@example.com<br>
+              Distrito Urbano do Ngola Kiluange <br>
+              Municipio de Luanda <br><br>
+              <strong>Phone:</strong> +244 927 86 01 91 / +244 930 76 22 36<br>
+              <strong>Phone:</strong> +244 936 82 02 25 / +244 911 80 33 75<br>
+              <strong>Email:</strong> webgeniussoftware@gmail.com<br>
             </p>
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links col-sm-6 col-6">
-            <h4>Useful Links</h4>
+            <h4>Links Úteis</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">About us</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Terms of service</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="http://webgenius.net/webgenius">http://webgenius.net/webgenius</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">Sobre nós</a></li>
+
             </ul>
           </div>
 
-          <div class="col-lg-3 col-md-6 footer-links col-sm-6 col-6">
-            <h4>Our Services</h4>
-            <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Design</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Web Development</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Product Management</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Marketing</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Graphic Design</a></li>
-            </ul>
-          </div>
+         
 
           <div class="col-lg-3 col-md-6 footer-links col-sm-6 col-6">
-            <h4>Our Social Networks</h4>
-            <p>Cras fermentum odio eu feugiat lide par naso tierra videa magna derita valies</p>
+            <h4>Social Média</h4>
+            <p>Facebook</p>
             <div class="social-links mt-3">
-              <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a>
-              <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
-              <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
-              <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a>
-              <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+              <a href="https://facebook.com/webgenius.software" class="facebook"><i class="bx bxl-facebook"></i></a>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-links col-sm-6 col-6">
+            <h4>Outros Serviços</h4>
+            <div class="social-links mt-3">
+              <ul>
+                <li><i class="ri-check-double-line"></i> Manutenção de Computadores (Hardware e Software)</li>
+                <li><i class="ri-check-double-line"></i>Instalação de Internet (TECMORF)</li>
+                <li><i class="ri-check-double-line"></i>Montagem de laboratórios Informático</li>
+              </ul>
             </div>
           </div>
 

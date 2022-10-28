@@ -20,11 +20,11 @@
                 <div class="row">
                     <div class="col-md-4">
                       <label for="nome">Nome do funcionario</label>
-                      <input type="text" class="form-control" id="nome_func" placeholder="Nome completo do funcionário" name="nome_func" required="required">
+                      <input type="text" class="form-control" id="input-field" placeholder="Nome completo do funcionário" name="nome_func" required="required" onkeyup="validate();">
                     </div>
                     <div class="col-md-4">
                         <label for="processo">Função</label>
-                        <input type="text" class="form-control" id="funcao" placeholder="Função ou Departamento" name="funcao" required="required">
+                        <input type="text" class="form-control" id="input-field" placeholder="Função ou Departamento" name="funcao" required="required" onkeyup="validate();">
                       </div>
                       <div class="col-md-4">
                         <label for="datanasc">Data de nascimento</label>
@@ -55,7 +55,7 @@
                       <div class="col-md-4">
                         <label for="img">Fotografia</label>
                         <input type="file" name="image" class="form-control" accept="image/*"
-                        onchange="updatePreview(this, 'image-preview')"  required="required">
+                        onchange="updatePreview(this, 'image-preview')" onchange="isImagem(this)"  required="required">
                         <br>
             
                       </div>
@@ -127,5 +127,27 @@ myModal.addEventListener('shown.bs.modal', () => {
         }
     }
 </script>
+
+<script> 
+  function validate() {
+  var element = document.getElementById('input-field');
+  element.value = element.value.replace(/[^a-zA-Zà-úÀ-Úã-õÃ-Õ ]+/, '');
+  };
+  </script>
+  
+  <script>
+   function isImagem(i){
+     
+     var img = i.value.split(".");
+     var ext = "."+img.pop();
+  
+     if(!ext.match(/\.(gif|jpg|jpeg|tiff|png)$/i)){
+        alert("Não é imagem");
+        i.value = '';
+        return;
+     }
+  }
+  
+  </script>
 
 @endsection

@@ -1,8 +1,3 @@
-@extends('PCA_admin')
-
-@section('title', 'Cursos')
-
-@section('content')
 
 <div class="col-xxl-4 col-md-6">
     <div class="card card2">
@@ -12,28 +7,11 @@
         <div class="container text-center">
           <div class="row">
             <div class="col">
-              <button class="btn btn-primary btn-lg" type="button" data-bs-toggle="collapse" data-bs-target="#cadastrodecursos" aria-expanded="false" aria-controls="collapseExample">
-                <i class="bi bi-person-plus"></i>
-                Cadastro de Cursos
-              </button>
+              
           
             </div>
-            <div class="col">
-              <button class="btn btn-success btn-lg" type="button" data-bs-toggle="collapse" data-bs-target="#gestadecursos" aria-expanded="false" aria-controls="collapseExample">
-
-                <i class="bi bi-people"></i>
-                Gestão de Cursos
-              </button>
-            </div>
-          </div>
-        </div>
-        <br>
-        <div class="collapse" id="gestadecursos">
-          <form action="/pcaadmin/turmas" method="GET">
-            <input type="text" name="search4" id="procurar4" class="form-control" placeholder="Pesquise por disciplinas">
-          </form>
-          
-        </div>
+            
+      
 
 
         <div class="collapse" id="cadastrodecursos">
@@ -77,4 +55,4 @@
     }
 </script>
 
-@endsection
+@

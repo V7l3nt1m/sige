@@ -14,4 +14,15 @@ class Turma extends Model
     ];
 
     protected $guarded = [];
+
+    public function alunos(){
+        return $this->hasMany('App\Models\Aluno');
+    }
+
+    public function classes(){
+            return $this->belongsToMany('App\Models\Classe');
+    }
+    public function cursos(){
+        return $this->belongsToMany('App\Models\Curso');
+}
 }

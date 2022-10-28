@@ -14,4 +14,19 @@ class Curso extends Model
     ];
 
     protected $guarded = [];
+
+    public function alunos(){
+        return $this->hasMany('App\Models\Aluno');
+    }
+
+    public function turmas(){
+        return $this->belongsToMany('App\Models\Turma');
+    }
+
+    public function classes(){
+        return $this->belongsToMany('App\Models\Classe');
+    }
+    public function disciplinas(){
+        return $this->belongsToMany('App\Models\Disciplina');
+    }
 }

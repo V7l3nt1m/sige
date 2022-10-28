@@ -1,375 +1,334 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
-
- 
-
-  <!-- Google Fonts -->
-  <link href="https://fonts.gstatic.com" rel="preconnect">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
-
-  <!-- Vendor CSS Files -->
-  <link href="/estilo_pca/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="/estilo_pca/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="/estilo_pca/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="/estilo_pca/assets/vendor/quill/quill.snow.css" rel="stylesheet">
-  <link href="/estilo_pca/assets/vendor/quill/quill.bubble.css" rel="stylesheet">
-  <link href="/estilo_pca/assets/vendor/remixicon/remixicon.css" rel="stylesheet">
-  <link href="/estilo_pca/assets/vendor/simple-datatables/style.css" rel="stylesheet">
-
-  <!-- Template Main CSS File -->
-  <link href="/estilo_pca/assets/css/style.css" rel="stylesheet">
-  <link rel="stylesheet" href="/estilo_pca/pca_admin.css">
-
- <title>@yield('title')</title>
-</head>
-
-<body>
-
-  <!-- ======= Header ======= -->
-  <header id="header" class="header fixed-top d-flex align-items-center">
-
-    <div class="d-flex align-items-center justify-content-between">
-      <a href="/" class="logo d-flex align-items-center">
-        <img src="assets/img/logo.png" alt="">
-        <span class="d-none d-lg-block">SIGE</span>
-      </a>
-      <i class="bi bi-list toggle-sidebar-btn"></i>
-    </div><!-- End Logo -->
-
-    <div class="search-bar">
-      <form class="search-form d-flex align-items-center" method="POST" action="#">
-        <input type="text" name="query" placeholder="Search" title="Enter search keyword">
-        <button type="submit" title="Search"><i class="bi bi-search"></i></button>
-      </form>
-    </div><!-- End Search Bar -->
-
-    <nav class="header-nav ms-auto">
-      <ul class="d-flex align-items-center">
-
-        <li class="nav-item d-block d-lg-none">
-          <a class="nav-link nav-icon search-bar-toggle " href="#">
-            <i class="bi bi-search"></i>
-          </a>
-        </li><!-- End Search Icon-->
-
-        <li class="nav-item dropdown">
-
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-bell"></i>
-            <span class="badge bg-primary badge-number">4</span>
-          </a><!-- End Notification Icon -->
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow notifications">
-            <li class="dropdown-header">
-              You have 4 new notifications
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-exclamation-circle text-warning"></i>
-              <div>
-                <h4>Lorem Ipsum</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>30 min. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-x-circle text-danger"></i>
-              <div>
-                <h4>Atque rerum nesciunt</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>1 hr. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-check-circle text-success"></i>
-              <div>
-                <h4>Sit rerum fuga</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>2 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="notification-item">
-              <i class="bi bi-info-circle text-primary"></i>
-              <div>
-                <h4>Dicta reprehenderit</h4>
-                <p>Quae dolorem earum veritatis oditseno</p>
-                <p>4 hrs. ago</p>
-              </div>
-            </li>
-
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-            <li class="dropdown-footer">
-              <a href="#">Show all notifications</a>
-            </li>
-
-          </ul><!-- End Notification Dropdown Items -->
-
-        </li><!-- End Notification Nav -->
-
-        <li class="nav-item dropdown">
-
-          <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-            <i class="bi bi-chat-left-text"></i>
-            <span class="badge bg-success badge-number">3</span>
-          </a><!-- End Messages Icon -->
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow messages">
-            <li class="dropdown-header">
-              You have 3 new messages
-              <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-1.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>Maria Hudson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>4 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-2.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>Anna Nelson</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>6 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="message-item">
-              <a href="#">
-                <img src="assets/img/messages-3.jpg" alt="" class="rounded-circle">
-                <div>
-                  <h4>David Muldon</h4>
-                  <p>Velit asperiores et ducimus soluta repudiandae labore officia est ut...</p>
-                  <p>8 hrs. ago</p>
-                </div>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li class="dropdown-footer">
-              <a href="#">Show all messages</a>
-            </li>
-
-          </ul><!-- End Messages Dropdown Items -->
-
-        </li><!-- End Messages Nav -->
-
-        <li class="nav-item dropdown pe-3">
-
-          <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
-            <span class="d-none d-md-block dropdown-toggle ps-2">{{$user->name}}</span>
-          </a><!-- End Profile Iamge Icon -->
-
-          <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
-            <li class="dropdown-header">
-              <h6>{{$user->name}}</h6>
-              <span>{{$user->permissao}}</span>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="users-profile.html">
-                <i class="bi bi-person"></i>
-                <span>My Profile</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <a class="dropdown-item d-flex align-items-center" href="{{route('definicao')}}">
-                <i class="bi bi-gear"></i>
-                <span>Account Settings</span>
-              </a>
-            </li>
-            <li>
-              <hr class="dropdown-divider">
-            </li>
-
-            <li>
-              <form action="/logout" method="POST">
-                @csrf
-                <a class="dropdown-item d-flex align-items-center" href="/logout"  onclick="event.preventDefault();
-                this.closest('form').submit();">
-                 <i class="bi bi-box-arrow-right"></i>
-                 <span>Sair</span>
-            </a>
-            </form>
-            </li>
-
-
-
-          </ul><!-- End Profile Dropdown Items -->
-        </li><!-- End Profile Nav -->
-
-      </ul>
-    </nav><!-- End Icons Navigation -->
-
-  </header><!-- End Header -->
-
-  <!-- ======= Sidebar ======= -->
-  <aside id="sidebar" class="sidebar">
-
-    <ul class="sidebar-nav" id="sidebar-nav">
-
-      <li class="nav-item">
-        <a class="nav-link " href="/pcaadmin">
-          <i class="bi bi-grid"></i>
-          <span>Ínicio</span>
-        </a>
-      </li><!-- End Dashboard Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" data-bs-target="#components-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-menu-button-wide"></i><span>Serviços</span><i class="bi bi-chevron-down ms-auto"></i>
-        </a>
-        <ul id="components-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-          <li>
-            <a href="{{route('cadasaluno')}}">
-              <i class="bi bi-circle"></i><span>Alunos</span>
-            </a>
-          </li>
-          <li>
-            <a href="{{route('funcionario')}}">
-              <i class="bi bi-circle"></i><span>Funcionários</span>
-            </a>
-          </li>
-          <li>
-            <a href="{{route('turmas')}}">
-              <i class="bi bi-circle"></i><span>Turmas</span>
-            </a>
-          </li>
-          <li>
-            <a href="{{route('disciplinas')}}">
-              <i class="bi bi-circle"></i><span>Disciplinas</span>
-            </a>
-          </li>
-          <li>
-            <a href="{{route('cursos')}}">
-              <i class="bi bi-circle"></i><span>Cursos</span>
-            </a>
-          </li>
-          
-        </ul>
-      </li><!-- End Components Nav -->
-
-      <li class="nav-item">
-        <a class="nav-link " href="#">
-          <i class="bi bi-credit-card"></i>
-          <span>Finança</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link " href="#">
-          <i class="bi bi-currency-dollar
-          "></i>
-          <span>Despesas</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link " href="permissoes">
-          <i class="bi bi-key"></i>
-          <span>Permissões</span>
-        </a>
-      </li>
-
-
-    </ul>
-
-  </aside><!-- End Sidebar-->
-
-  <main id="main" class="main">
-
-    <div class="pagetitle">
-      <h1>Dashboard</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-          <li class="breadcrumb-item active">Dashboard</li>
-        </ol>
-      </nav>
-    </div><!-- End Page Title -->
-
-    @yield('content')
     
-  </main><!-- End #main -->
+<!--Designed By ALpha-->
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>PCA</title>
 
-  <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
-    <div class="copyright">
-      &copy; Copyright <strong><span>SIGE</span></strong>. All Rights Reserved
-    </div>
-   
-  </footer><!-- End Footer -->
-  
-  <div id="preloader"></div>
-  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+        <!-- Vendor styles -->
+        <link rel="stylesheet" href="/template/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css">
+        <link rel="stylesheet" href="/template/vendors/bower_components/animate.css/animate.min.css">
+        <link rel="stylesheet" href="/template/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.css">
+        <link rel="stylesheet" href="/template/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css">
 
-  <!-- Vendor JS Files -->
-  <script src="/estilo_pca/assets/vendor/apexcharts/apexcharts.min.js"></script>
-  <script src="/estilo_pca/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="/estilo_pca/assets/vendor/chart.js/chart.min.js"></script>
-  <script src="/estilo_pca/assets/vendor/echarts/echarts.min.js"></script>
-  <script src="/estilo_pca/assets/vendor/quill/quill.min.js"></script>
-  <script src="/estilo_pca/assets/vendor/simple-datatables/simple-datatables.js"></script>
-  <script src="/estilo_pca/assets/vendor/tinymce/tinymce.min.js"></script>
-  <script src="/estilo_pca/assets/vendor/php-email-form/validate.js"></script>
+        <!-- App styles -->
+        <link rel="stylesheet" href="/template/css/app.min.css">
+    </head>
 
-  <!-- Template Main JS File -->
-  <script src="/estilo_pca/assets/js/main.js"></script>
-  
-</body>
+    <body data-sa-theme="1">
+        <main class="main">
+            <div class="page-loader">
+                <div class="page-loader__spinner">
+                    <svg viewBox="25 25 50 50">
+                        <circle cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10" />
+                    </svg>
+                </div>
+            </div>
 
+            <header class="header">
+                <div class="navigation-trigger hidden-xl-up" data-sa-action="aside-open" data-sa-target=".sidebar">
+                    <i class="zmdi zmdi-menu"></i>
+                </div>
+
+                <div class="logo hidden-sm-down">
+                    <h1><a href="/">SIGE</a></h1>
+                </div>
+
+                <form class="search">
+                    <div class="search__inner">
+                        <input type="text" class="search__text" placeholder="Search for people, files, documents...">
+                        <i class="zmdi zmdi-search search__helper" data-sa-action="search-close"></i>
+                    </div>
+                </form>
+
+                <ul class="top-nav">
+                    <li class="hidden-xl-up"><a href="#" data-sa-action="search-open"><i class="zmdi zmdi-search"></i></a></li>
+
+                    <li class="dropdown">
+                        <a href="#" data-toggle="dropdown" class="top-nav__notify"><i class="zmdi zmdi-email"></i></a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-menu--block">
+                            <div class="dropdown-header">
+                                Mensagens
+
+                                <div class="actions">
+                                    <a href="messages.html" class="actions__item zmdi zmdi-plus"></a>
+                                </div>
+                            </div>
+
+                            <div class="listview listview--hover">
+                                <a href="#" class="listview__item">
+
+                                   
+                                </a>
+
+                              
+
+                              
+
+                                
+
+                                <a href="#" class="view-more">Ver todas as Mensagens</a>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="dropdown top-nav__notifications">
+                        <a href="#" data-toggle="dropdown" class="top-nav__notify">
+                            <i class="zmdi zmdi-notifications"></i>
+                        </a>
+                        <div class="dropdown-menu dropdown-menu-right dropdown-menu--block">
+                            <div class="dropdown-header">
+                                Notificações
+
+                                <div class="actions">
+                                    <a href="#" class="actions__item zmdi zmdi-check-all" data-sa-action="notifications-clear"></a>
+                                </div>
+                            </div>
+
+                            <div class="listview listview--hover">
+                                <div class="listview__scroll scrollbar-inner">
+                                    <a href="#" class="listview__item">
+
+                                       
+                                    </a>
+
+                                  
+
+                                </div>
+
+                                <div class="p-1"></div>
+                            </div>
+                        </div>
+                    </li>
+
+                  
+
+                    
+
+                    <li class="dropdown hidden-xs-down">
+                        <a href="#" data-toggle="dropdown"><i class="zmdi zmdi-more-vert"></i></a>
+
+                        <div class="dropdown-menu dropdown-menu-right">
+                            <div class="dropdown-item theme-switch">
+                                Alterar Cor do Tema
+
+                                <div class="btn-group btn-group--colors mt-2 d-block" data-toggle="buttons">
+                                    <label class="btn active border-0" style="background-color: #772036"><input type="radio" value="1" autocomplete="off" checked></label>
+                                    <label class="btn border-0" style="background-color: #273C5B"><input type="radio" value="2" autocomplete="off"></label>
+                                    <label class="btn border-0" style="background-color: #174042"><input type="radio" value="3" autocomplete="off"></label>
+                                    <label class="btn border-0" style="background-color: #383844"><input type="radio" value="4" autocomplete="off"></label>
+                                    <label class="btn border-0" style="background-color: #49423F"><input type="radio" value="5" autocomplete="off"></label>
+
+                                    <br>
+
+                                    <label class="btn border-0" style="background-color: #5e3d22"><input type="radio" value="6" autocomplete="off"></label>
+                                    <label class="btn border-0" style="background-color: #234d6d"><input type="radio" value="7" autocomplete="off"></label>
+                                    <label class="btn border-0" style="background-color: #3b5e5e"><input type="radio" value="8" autocomplete="off"></label>
+                                    <label class="btn border-0" style="background-color: #0a4c3e"><input type="radio" value="9" autocomplete="off"></label>
+                                    <label class="btn border-0" style="background-color: #7b3d54"><input type="radio" value="10" autocomplete="off"></label>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </li>
+                </ul>
+
+                <div class="clock hidden-md-down">
+                    <div class="time">
+                        <span class="hours"></span>
+                        <span class="min"></span>
+                        <span class="sec"></span>
+                    </div>
+                </div>
+            </header>
+
+            <aside class="sidebar">
+                <div class="scrollbar-inner">
+
+                    <div class="user">
+                        <div class="user__info" data-toggle="dropdown">
+                            <img class="user__img" src="/template/demo/img/profile-pics/8.jpg" alt="">
+                            <div>
+                                <div class="user__name">{{$user->name}}</div>
+                                <div class="user__email">{{$user->permissao}}</div>
+                            </div>
+                        </div>
+
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" href="#">Ver Perfil</a>
+                            <a class="dropdown-item" href="#">Configurações</a>
+                            <a class="dropdown-item" href="#">Sair</a>
+                        </div>
+                    </div>
+
+                    <ul class="navigation">
+                        <li class="navigation__active"><a href="{{route('pcaadmin')}}"><i class="zmdi zmdi-home"></i> Dashboard</a></li>
+
+                        <li class="navigation__sub @@variantsactive">
+                            <a href="#"><i class="zmdi zmdi-settings"></i> Serviços</a>
+
+                            <ul>
+                                <li class="navigation__sub @@variantsactive">
+                                    <a href="#">Alunos</a>
+                                <ul>
+                                    <li class="@@sidebaractive"><a href="{{route('cadasaluno')}}">Cadastrar Alunos</a></li>
+                                    <li class="@@boxedactive"><a href="{{route('gerenciaralunos')}}">Gerenciar Alunos</a></li>
+                                </ul>
+                            </li>
+                            <li class="navigation__sub @@variantsactive">
+                                <a href="#">Functionários</a>
+                            <ul>
+                                <li class="@@sidebaractive"><a href="{{route('funcionario')}}">Cadastrar Functionários</a></li>
+                                <li class="@@boxedactive"><a href="#">Gerenciar Functionários</a></li>
+                            </ul>
+                        </li>
+
+                        <li class="navigation__sub @@variantsactive">
+                            <a href="#">Turmas</a>
+                        <ul>
+                            <li class="@@sidebaractive"><a href="{{route('turmas')}}">Cadastrar Turmas</a></li>
+                            <li class="@@boxedactive"><a href="{{route('gerenciarturmas')}}">Gerenciar Turmas</a></li>
+                        </ul>
+                    </li>
+                    <li class="navigation__sub @@variantsactive">
+                        <a href="#">Disciplinas</a>
+                    <ul>
+                        <li class="@@sidebaractive"><a href="{{route('disciplinas')}}">Cadastrar Disciplinas</a></li>
+                        <li class="@@boxedactive"><a href="#">Gerenciar Disciplinas</a></li>
+                    </ul>
+                </li>
+
+                <li class="navigation__sub @@variantsactive">
+                    <a href="#">Classes</a>
+                <ul>
+                    <li class="@@sidebaractive"><a href="{{route('classes')}}">Cadastrar Classes</a></li>
+                    <li class="@@boxedactive"><a href="{{route('funcionario')}}">Gerenciar Classes</a></li>
+                </ul>
+            </li>
+            <li class="navigation__sub @@variantsactive">
+                <a href="#">Cursos</a>
+            <ul>
+                <li class="@@sidebaractive"><a href="{{route('cursos')}}">Cadastrar Cursos</a></li>
+                <li class="@@boxedactive"><a href="{{route('funcionario')}}">Gerenciar Cursos</a></li>
+            </ul>
+        </li>
+                                </ul>
+                        </li>
+
+                        <li class="@@typeactive"><a href="#"><i class="zmdi zmdi-money"></i> Finança</a></li>
+
+                        <li class="@@widgetactive"><a href="#"><i class="zmdi zmdi-money-box"></i> Despesas</a></li>
+                        
+
+                        <li class="@@widgetactive"><a href="{{route('permissoes')}}"><i class="zmdi zmdi-lock"></i></i> Permissões</a></li>
+
+                        <li class="@@widgetactive"><a href="widgets.html"><i class="zmdi zmdi-account"></i> Livros de Ponto</a></li>
+
+                       
+
+
+
+                       
+                           
+                    </ul>
+                </div>
+            </aside>
+
+            <section class="content">
+                <header class="content__title">
+                    @if($rota == 'pcaadmin')
+                    <h1>Dashboard</h1>
+
+                    @else
+                    <h1>Dashboard > {{$rota}}</h1>
+                    @endif
+
+                </header>
+
+              
+               
+
+                    
+                   
+
+                @yield('content')
+
+
+                <footer class="footer hidden-xs-down">
+                    <p>© SIGE. All rights reserved.</p>
+
+                 
+                </footer>
+            </section>
+        </main>
+
+        <!-- Older IE warning message -->
+            <!--[if IE]>
+                <div class="ie-warning">
+                    <h1>Warning!!</h1>
+                    <p>You are using an outdated version of Internet Explorer, please upgrade to any of the following web browsers to access this website.</p>
+
+                    <div class="ie-warning__downloads">
+                        <a href="http://www.google.com/chrome">
+                            <img src="img/browsers/chrome.png" alt="">
+                        </a>
+
+                        <a href="https://www.mozilla.org/en-US/firefox/new">
+                            <img src="img/browsers/firefox.png" alt="">
+                        </a>
+
+                        <a href="http://www.opera.com">
+                            <img src="img/browsers/opera.png" alt="">
+                        </a>
+
+                        <a href="https://support.apple.com/downloads/safari">
+                            <img src="img/browsers/safari.png" alt="">
+                        </a>
+
+                        <a href="https://www.microsoft.com/en-us/windows/microsoft-edge">
+                            <img src="img/browsers/edge.png" alt="">
+                        </a>
+
+                        <a href="http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                            <img src="img/browsers/ie.png" alt="">
+                        </a>
+                    </div>
+                    <p>Sorry for the inconvenience!</p>
+                </div>
+            <![endif]-->
+
+        <!-- Javascript -->
+        <!-- Vendors -->
+        <script src="/template/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="/template/vendors/bower_components/popper.js/dist/umd/popper.min.js"></script>
+        <script src="/template/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="/template/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.min.js"></script>
+        <script src="/template/vendors/bower_components/jquery-scrollLock/jquery-scrollLock.min.js"></script>
+
+        <script src="/template/vendors/bower_components/salvattore/dist/salvattore.min.js"></script>
+        <script src="/template/vendors/bower_components/flot/jquery.flot.js"></script>
+        <script src="/template/vendors/bower_components/flot/jquery.flot.resize.js"></script>
+        <script src="/template/vendors/bower_components/flot.curvedlines/curvedLines.js"></script>
+        <script src="/template/vendors/bower_components/jqvmap/dist/jquery.vmap.min.js"></script>
+        <script src="/template/vendors/bower_components/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+        <script src="/template/vendors/bower_components/jquery.easy-pie-chart/dist/jquery.easypiechart.min.js"></script>
+        <script src="/template/vendors/bower_components/peity/jquery.peity.min.js"></script>
+        <script src="/template/vendors/bower_components/moment/min/moment.min.js"></script>
+        <script src="/template/vendors/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
+
+        <!-- Charts and maps-->
+        <script src="/template/demo/js/flot-charts/curved-line.js"></script>
+        <script src="/template/demo/js/flot-charts/line.js"></script>
+        <script src="/template/demo/js/flot-charts/dynamic.js"></script>
+        <script src="/template/demo/js/flot-charts/chart-tooltips.js"></script>
+        <script src="/template/demo/js/other-charts.js"></script>
+        <script src="/template/demo/js/jqvmap.js"></script>
+
+        <!-- App functions and actions -->
+        <script src="/template/js/app.min.js"></script>
+    </body>
+
+<!--Designed By ALpha-->
 </html>
-

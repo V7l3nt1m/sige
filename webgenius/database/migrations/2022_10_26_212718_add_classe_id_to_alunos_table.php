@@ -13,9 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('turmas', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('alunos', function (Blueprint $table) {
+            $table->foreignId('classe_id')->constrained()->nullable();
         });
     }
 
@@ -26,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('turmas');
+        Schema::table('alunos', function (Blueprint $table) {
+            $table->foreignId('classe_id')->contrained()->onDelete('cascade');
+        });
     }
 };

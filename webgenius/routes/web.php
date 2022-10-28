@@ -28,13 +28,23 @@ Route::get('/tesouraria', [TesourariaController::class, 'index'])->middleware('a
 Route::get('/secretaria',[SecretariaController::class, 'index'])->middleware('auth');
 Route::get('/professor',[ProfessorController::class, 'index'])->middleware('auth')->name('professor');
 Route::get('/aluno', [AlunoController::class, 'index'])->middleware('auth');
-Route::get('/pcaadmin', [PCAController::class, 'index'])->middleware('auth')->name('pcaadmin');
+Route::get('/pcaadmin', [PCAController::class, 'index'])->name('pcaadmin');
+Route::get('/login_aluno', [AlunoController::class, 'login'])->name('login_aluno');
+Route::post('/aluno', [AlunoController::class, 'login_aluno']);
+
+
+
+Route::get('/register', [EventController::class, 'register'])->name('register');
+//Rotas Aluno/aluno
+Route::put('/aluno/{id}', [AlunoController::class, 'update_senha'])->middleware('auth');
 
 
 
 //rotas pcaaluno
 Route::get('/pcaadmin/cadasaluno', [PCAController::class, 'cadasaluno'])->middleware('auth')->name('cadasaluno');
 Route::post('/pcaadmin/cadasaluno', [PCAController::class, 'store_alunos'])->middleware('auth');
+Route::get('/pcaadmin/alunos', [PCAController::class, 'gerenciaralunos'])->middleware('auth')->name('gerenciaralunos');
+
 
 //rotas pcafuncionario
 Route::get('/pcaadmin/funcionarios', [PCAController::class, 'cadafuncionario'])->middleware('auth')->name('funcionario');
@@ -47,6 +57,9 @@ Route::PUT('/pcaadmin', [PCAController::class, 'store_funcionarios'])->middlewar
 //rotas turmas
 Route::get('/pcaadmin/turmas', [PCAController::class, 'turmas'])->middleware('auth')->name('turmas');
 Route::post('/pcaadmin/turmas', [PCAController::class, 'cadaturmas'])->middleware('auth');
+Route::get('/pcaadmin/gerenciarturmas', [PCAController::class, 'gerenciarturmas'])->middleware('auth')->name('gerenciarturmas');
+Route::post('/pcaadmin/gerenciarturmas', [PCAController::class, 'associar_turmas'])->middleware('auth');
+
 
 //rotas disciplinas
 Route::get('/pcaadmin/disciplinas', [PCAController::class, 'disciplinas'])->middleware('auth')->name('disciplinas');
@@ -55,6 +68,11 @@ Route::post('/pcaadmin/disciplinas', [PCAController::class, 'cadasdisciplinas'])
 //rotas cursos
 Route::get('/pcaadmin/cursos', [PCAController::class, 'cursos'])->middleware('auth')->name('cursos');
 Route::post('/pcaadmin/cursos', [PCAController::class, 'cadascursos'])->middleware('auth');
+
+//rotas classes
+Route::get('/pcaadmin/classes', [PCAController::class, 'classes'])->middleware('auth')->name('classes');
+Route::post('/pcaadmin/classes', [PCAController::class, 'cadaclasses'])->middleware('auth');
+
 
 //rotas definicao
 Route::get('/pcaadmin/definições', [PCAController::class, 'definicao'])->middleware('auth')->name('definicao');
