@@ -27,56 +27,61 @@ Route::get('/', [EventController::class, 'index']);
 Route::get('/tesouraria', [TesourariaController::class, 'index'])->middleware('auth');
 Route::get('/secretaria',[SecretariaController::class, 'index'])->middleware('auth');
 Route::get('/professor',[ProfessorController::class, 'index'])->middleware('auth')->name('professor');
-Route::get('/aluno', [AlunoController::class, 'index'])->middleware('auth');
-Route::get('/pcaadmin', [PCAController::class, 'index'])->name('pcaadmin');
+Route::get('/aluno', [AlunoController::class, 'index'])->middleware('auth')->middleware('auth');
+Route::get('/pcaadmin', [PCAController::class, 'index'])->name('pcaadmin')->middleware('auth');
 Route::get('/login_aluno', [AlunoController::class, 'login'])->name('login_aluno');
 Route::post('/aluno', [AlunoController::class, 'login_aluno']);
 
+//acess denied
+Route::get('/acessdenied', [EventController::class, 'acessdenied'])->middleware('auth');
 
 
-Route::get('/register', [EventController::class, 'register'])->name('register');
+Route::get('/register', [EventController::class, 'index_register'])->middleware('auth')->name('register');
+
 //Rotas Aluno/aluno
 Route::put('/aluno/{id}', [AlunoController::class, 'update_senha'])->middleware('auth');
 
-
+//professor
+Route::put('/professor/{id}', [ProfessorController::class, 'update_professor'])->middleware('auth');
 
 //rotas pcaaluno
-Route::get('/pcaadmin/cadasaluno', [PCAController::class, 'cadasaluno'])->middleware('auth')->name('cadasaluno');
-Route::post('/pcaadmin/cadasaluno', [PCAController::class, 'store_alunos'])->middleware('auth');
-Route::get('/pcaadmin/alunos', [PCAController::class, 'gerenciaralunos'])->middleware('auth')->name('gerenciaralunos');
+Route::get('/pcaadmin/cadasaluno', [PCAController::class, 'cadasaluno'])->middleware('auth')->name('cadasaluno')->middleware('denied');
+Route::post('/pcaadmin/cadasaluno', [PCAController::class, 'store_alunos'])->middleware('auth')->middleware('denied');
+Route::get('/pcaadmin/alunos', [PCAController::class, 'gerenciaralunos'])->middleware('auth')->middleware('denied')->name('gerenciaralunos');
 
 
 //rotas pcafuncionario
-Route::get('/pcaadmin/funcionarios', [PCAController::class, 'cadafuncionario'])->middleware('auth')->name('funcionario');
-Route::post('/pcaadmin/funcionarios', [PCAController::class, 'store_funcionarios'])->middleware('auth');
+Route::get('/pcaadmin/funcionarios', [PCAController::class, 'cadafuncionario'])->middleware('auth')->name('funcionario')->middleware('denied');
+Route::post('/pcaadmin/funcionarios', [PCAController::class, 'store_funcionarios'])->middleware('auth')->middleware('denied');
 
 //rota permissoes
-Route::get('/pcaadmin/permissoes', [PCAController::class, 'permissoes'])->middleware('auth')->name('permissoes');
-Route::PUT('/pcaadmin', [PCAController::class, 'store_funcionarios'])->middleware('auth');
+Route::get('/pcaadmin/permissoes', [PCAController::class, 'permissoes'])->middleware('auth')->name('permissoes')->middleware('denied');
+Route::put('/pcaadmin/permissoes/{id}', [PCAController::class, 'update_permissao'])->middleware('auth')->middleware('denied');
+Route::PUT('/pcaadmin', [PCAController::class, 'store_funcionarios'])->middleware('auth')->middleware('denied');
 
 //rotas turmas
-Route::get('/pcaadmin/turmas', [PCAController::class, 'turmas'])->middleware('auth')->name('turmas');
-Route::post('/pcaadmin/turmas', [PCAController::class, 'cadaturmas'])->middleware('auth');
-Route::get('/pcaadmin/gerenciarturmas', [PCAController::class, 'gerenciarturmas'])->middleware('auth')->name('gerenciarturmas');
-Route::post('/pcaadmin/gerenciarturmas', [PCAController::class, 'associar_turmas'])->middleware('auth');
+Route::get('/pcaadmin/turmas', [PCAController::class, 'turmas'])->middleware('auth')->name('turmas')->middleware('denied');
+Route::post('/pcaadmin/turmas', [PCAController::class, 'cadaturmas'])->middleware('auth')->middleware('denied');
+Route::get('/pcaadmin/gerenciarturmas', [PCAController::class, 'gerenciarturmas'])->middleware('auth')->name('gerenciarturmas')->middleware('denied');
+Route::post('/pcaadmin/gerenciarturmas', [PCAController::class, 'associar_turmas'])->middleware('auth')->middleware('denied');
 
 
 //rotas disciplinas
-Route::get('/pcaadmin/disciplinas', [PCAController::class, 'disciplinas'])->middleware('auth')->name('disciplinas');
-Route::post('/pcaadmin/disciplinas', [PCAController::class, 'cadasdisciplinas'])->middleware('auth');
+Route::get('/pcaadmin/disciplinas', [PCAController::class, 'disciplinas'])->middleware('auth')->name('disciplinas')->middleware('denied');
+Route::post('/pcaadmin/disciplinas', [PCAController::class, 'cadasdisciplinas'])->middleware('auth')->middleware('denied');
 
 //rotas cursos
-Route::get('/pcaadmin/cursos', [PCAController::class, 'cursos'])->middleware('auth')->name('cursos');
-Route::post('/pcaadmin/cursos', [PCAController::class, 'cadascursos'])->middleware('auth');
+Route::get('/pcaadmin/cursos', [PCAController::class, 'cursos'])->middleware('auth')->name('cursos')->middleware('denied');
+Route::post('/pcaadmin/cursos', [PCAController::class, 'cadascursos'])->middleware('auth')->middleware('denied');
 
 //rotas classes
-Route::get('/pcaadmin/classes', [PCAController::class, 'classes'])->middleware('auth')->name('classes');
-Route::post('/pcaadmin/classes', [PCAController::class, 'cadaclasses'])->middleware('auth');
+Route::get('/pcaadmin/classes', [PCAController::class, 'classes'])->middleware('auth')->name('classes')->middleware('denied');
+Route::post('/pcaadmin/classes', [PCAController::class, 'cadaclasses'])->middleware('auth')->middleware('denied');
 
 
 //rotas definicao
-Route::get('/pcaadmin/definições', [PCAController::class, 'definicao'])->middleware('auth')->name('definicao');
-Route::put('/pcaadmin/definições/{id}', [PCAController::class, 'updateinfo'])->middleware('auth');
+Route::get('/pcaadmin/definições', [PCAController::class, 'definicao'])->middleware('auth')->name('definicao')->middleware('denied');
+Route::put('/pcaadmin/definições/{id}', [PCAController::class, 'updateinfo'])->middleware('auth')->middleware('denied');
 
 
 Route::middleware([
@@ -94,8 +99,12 @@ Route::middleware([
             return redirect('/secretaria');
         }elseif ( (strcasecmp($permissao, "professor")) == 0) {
             return redirect('/professor');
-        }elseif ( (strcasecmp($permissao, "sem")) == 0) {
+        }elseif ( (strcasecmp($permissao, "Aluno")) == 0) {
+            return redirect('/aluno');
+        }
+        elseif ( (strcasecmp($permissao, "pcaadmin")) == 0) {
             return redirect('/pcaadmin');
         }
+        
     })->middleware('auth');
 });

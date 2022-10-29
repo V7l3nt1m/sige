@@ -62,6 +62,10 @@ class User extends Authenticatable
     ];
 
     public function aluno(){
-        return $this->hasMany('App\Models\Aluno');
+        return $this->belongsTo('App\Models\Aluno');
+    }
+
+    public function funcionario(){
+        return $this->belongsTo('App\Models\Funcionario');
     }
 }

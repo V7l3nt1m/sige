@@ -1,108 +1,72 @@
 <x-guest-layout>
     <x-jet-authentication-card>
         <x-slot name="logo">
+            <x-jet-authentication-card-logo />
         </x-slot>
 
         <x-jet-validation-errors class="mb-4" />
 
-        <form method="POST" action="{{ route('register') }}" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('register') }}">
             @csrf
-            @method('POST')
+
             <div>
-                <x-jet-label for="name" value="{{ __('Nome do Aluno') }}" />
+                <x-jet-label for="name" value="{{ __('Name') }}" />
                 <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
             </div>
 
             <div class="mt-4">
                 <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required/>
-            </div>
-
-        
-            <div class="mt-4">
-                <x-jet-label for="telefone" value="{{ __('Telefone') }}" />
-                <x-jet-input id="telefone" class="block mt-1 w-full" type="text" name="telefone" required autocomplete="new-password" />
+                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
             </div>
 
             <div class="mt-4">
-                <x-jet-label for="Processo" value="{{ __('Nº de Processo') }}" />
-                <x-jet-input id="Processo" class="block mt-1 w-full" type="number" name="num_processo" required autocomplete="new-password" />
+                <x-jet-label for="permissao" value="{{ __('Permissao') }}" />
+                <select name="permissao" id="password" class="block mt-1 w-full form-control">
+                    <option value="" disabled selected>Permissao</option>
+                    <option value="tesouraria">Tesouraria</option>
+                    <option value="secretaria">Secretaria</option>
+                    <option value="professor">Professor</option>
+            </select>
+            </div>
+
+            
+
+            <div class="mt-4">
+                <x-jet-label for="password" value="{{ __('Password') }}" />
+                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
             </div>
 
             <div class="mt-4">
-                <label class="custom-control custom-radio">
-                    <input id="radio1" name="genero_aluno" type="radio" required="required" value="Feminino">
-                    <span class="custom-control-indicator"></span>
-                    <span class="custom-control-description">Feminino</span>
-                </label>
-
-                <label class="custom-control custom-radio">
-                    <input type="radio" name="genero_aluno" id="flexRadioDefault1"  required="required" value="Masculino">
-                    <span class="custom-control-indicator"></span>
-                    <span class="custom-control-description">Masculino</span>
-                </label>
+                <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
+                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
             </div>
 
-            <div class="mt-4">
-                <label for="datanasc_aluno">Data de Nascimento</label>
-                <input type="date" name="data_nasc" class="form-control" id="datanasc_aluno" placeholder="data de nascimento"  required="required">
-            </div>
+            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
+                <div class="mt-4">
+                    <x-jet-label for="terms">
+                        <div class="flex items-center">
+                            <x-jet-checkbox name="terms" id="terms"/>
 
-            <div class="mt-4">
-                <input type="file" name="image" class="form-control btn btn-light" accept="image/*" onchange="isImagem(this)"
-                onchange="updatePreview(this, 'image-preview');"  required="required" title="Faça o upload de uma fotografia meio corpo" data-toggle="tooltip" data-placement="top" required="required">
-                <img id="image-preview"
-                        style="width:200px"
-                        class="img-fluid img-thumbnail" alt="placeholder" >
-            </div>
-
-           <div class="mt-4">
-            <select name="nome_turma" id="">
-                <option value="" selected disabled>Turma</option>
-                    @foreach($turmas as $turma)
-                          <option value="{{$turma->nome_turma}}">{{$turma->nome_turma}}</option>
-                    @endforeach
-               </select>
-               <select name="nome_classe" id="">
-                <option value="" selected disabled>Classe</option>
-                    @foreach($classes as $classe)
-                          <option value="{{$classe->nome_classe}}">{{$classe->nome_classe}}</option>
-                    @endforeach
-               </select>
-               <select name="nome_curso" id="">
-                <option value="" selected disabled>Curso</option>
-                    @foreach($cursos as $curso)
-                          <option value="{{$curso->nome_curso}}">{{$curso->nome_curso}}</option>
-                    @endforeach
-               </select>
-               
-           </div>
-
-           
+                            <div class="ml-2">
+                                {!! __('I agree to the :terms_of_service and :privacy_policy', [
+                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Terms of Service').'</a>',
+                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Privacy Policy').'</a>',
+                                ]) !!}
+                            </div>
+                        </div>
+                    </x-jet-label>
+                </div>
+            @endif
 
             <div class="flex items-center justify-end mt-4">
-               
+                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
+                    {{ __('Already registered?') }}
+                </a>
 
                 <x-jet-button class="ml-4">
-                    {{ __('Cadastrar') }}
+                    {{ __('Register') }}
                 </x-jet-button>
             </div>
         </form>
-
-        <script>
-            function isImagem(i){
-              
-              var img = i.value.split(".");
-              var ext = "."+img.pop();
-           
-              if(!ext.match(/\.(gif|jpg|jpeg|tiff|png)$/i)){
-                 alert("Não é imagem");
-                 i.value = '';
-                 return;
-              }
-           }
-           
-           </script>
-
     </x-jet-authentication-card>
 </x-guest-layout>

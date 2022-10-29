@@ -10,6 +10,7 @@
         <h4 class="titulo">Permissoes dos Funcionários</h4>
             <form action="/pcaadmin/permissoes" method="GET">
                 <input type="text" name="search" id="procurar" class="form-control" placeholder="Pesquise por algum funcionario">
+            </form>
                 <div>
                     @if($search)
                     <div class="container">
@@ -35,12 +36,16 @@
                             <td>{{$funcionario->telefone}}</td>
                             <td>{{$funcionario->tipo_fun}}</td>
                             <td>
-                                <form action="" method="POST">
-                                    @csrf
+                                <form action="/pcaadmin/permissoes/{{$funcionario->id}}" method="POST">
+                                  @csrf
                                     @method('PUT')
                                     <div class="btn-group" role="group">
-                                      <select name="" id="" class="form-control">
+                                      <select name="permissao" id="" required>
                                           <option value="" selected disabled> Permissões</option>
+                                          <option value="professor">Professor</option>
+                                          <option value="tesouraria">tesouraria</option>
+                                          <option value="pcaadmin">Admin</option>
+                                          <option value="secretaria">secretaria</option>
                                       </select>
                                       <input type="submit" value="Alterar" class="btn btn-primary">
                                     </div>
@@ -88,7 +93,6 @@
                                 <td>{{$todosfuncionarios->tipo_fun}}</td>
                                 <td>
                                     <form action="" method="POST">
-                                        @csrf
                                         @method('PUT')
                                         <div class="btn-group" role="group">
                                           <select name="" id="" class="form-control">

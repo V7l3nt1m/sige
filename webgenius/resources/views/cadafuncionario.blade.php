@@ -7,14 +7,21 @@
 <div class="col-xxl-4 col-md-6">
     <div class="card card2">
 
-      
+      <main>
+        @if (session('msg'))
+          <h1>
+            {{session('msg')}}
+          </h1>
+      @endif
+
+      </main>
 
       <div class="card-body">
         <h4 class="titulo">Cadastro de funcionarios</h4>
         
         <div class="row">
           <div class="col-md-9">
-            <form action="/pcaadmin" enctype="multipart/form-data" method="POST">
+            <form action="/pcaadmin/funcionarios" enctype="multipart/form-data" method="POST">
                 @csrf
                 @method('POST')
                 <div class="row">
@@ -62,14 +69,7 @@
                 </div>
                 <br>
                 <div class="row">
-                    <div class="col-md-4">
-                        <label for="exampleInputPassword1">Senha</label>
-                        <input type="password" name="senha1" class="form-control" id="senha" placeholder="Senha" required="required">
-                      </div>
-                      <div class="col-md-4">
-                          <label for="confsenha">Confirmar senha</label>
-                          <input type="password" name="senha2" class="form-control" id="confsenha" placeholder="Confirme a Senha"  required="required">
-                        </div>
+                    
                         <div class="col-md-4">
                           <label for="telefone">Nº de Telefone</label>
                           <input type="number" class="form-control" id="telefone" placeholder="Nº de Telefone do funcionário" name="telefone"  required="required">

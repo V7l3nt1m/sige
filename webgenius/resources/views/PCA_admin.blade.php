@@ -159,7 +159,12 @@
                         <div class="dropdown-menu">
                             <a class="dropdown-item" href="#">Ver Perfil</a>
                             <a class="dropdown-item" href="#">Configurações</a>
-                            <a class="dropdown-item" href="#">Sair</a>
+                            <form action="/logout" method="POST">
+                                @csrf
+                                <a href="/logout" class="dropdown-item"  onclick="event.preventDefault();
+                                this.closest('form').submit();">Sair
+                            </a>
+                            </form>
                         </div>
                     </div>
 

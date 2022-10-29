@@ -18,15 +18,23 @@ use Illuminate\Support\Facades\Hash;
 class PCAController extends Controller
 {
     public function index(){
-        $rota = \Request::route()->getName();
-        $user = auth()->user();
-
-        return view('PCA_admin', ['user' => $user, 'rota' => $rota]);
+        $usuario = auth()->user();
+        if((strcasecmp($usuario->permissao, "pcaadmin")) == 0){
+            $rota = \Request::route()->getName();
+            $user = auth()->user();
+    
+          return view('PCA_admin', ['user' => $user, 'rota' => $rota]);
+        }else{
+            return redirect('acessdenied');
+                }
+       
     }
     
 
 
     public function cadasaluno(){
+        $usuario = auth()->user();
+        if((strcasecmp($usuario->permissao, "pcaadmin")) == 0){
         $turmas = Turma::all();
         $classes = Classe::all();
         $cursos = Curso::all();
@@ -43,7 +51,10 @@ class PCAController extends Controller
         }
         $user = auth()->user();
         return view('cadasaluno', ['user' => $user, 'alunos' => $alunos, 'search2' => $search2,'rota' => $rota, 'turmas' => $turmas, 'classes' => $classes, 'cursos' => $cursos]);
-    }
+    }else{
+        return redirect('acessdenied');
+        }
+}
 
 
     public function store_alunos(Request $req){
@@ -56,10 +67,10 @@ class PCAController extends Controller
 
         $user = new User;
 
-        $user->name = $req->nome_aluno;
+        $user->name = $req->n_processo;
         $user->email = $req->email;
-        $user->permissao = "aluno";
-        $user->password = "Aluno2022";
+        $user->permissao = "Aluno";
+        $user->password = Hash::make("Aluno2022");
 
 
             //image upload
@@ -110,24 +121,37 @@ class PCAController extends Controller
                                 ->orderBy('id', 'desc')
                                 ->limit(1)
                                 ->get();
-                                if(count($query8) == 0){
-                                    $aluno1->id = 1;
-                                    $user->aluno_id = 1; 
-                                    $user->aluno_id_numprocesso = 1;
 
-                                        $aluno1->save();
-                                        $user->save();
-                                        return redirect('/pcaadmin');
-                                }else{
-                                    foreach ($query8 as $q8) {
-                                        $aluno1->id = $q8->id + 1;
-                                        $user->aluno_id = $q8->id + 1; 
-                                        $user->aluno_id_numprocesso = $q8->id + 1;
-
-                                        $aluno1->save();
-                                        $user->save();
-                                        return redirect('/pcaadmin');
-                                          }
+                                $query9 = DB::table('users')
+                                ->select('id')
+                                ->orderBy('id', 'desc')
+                                ->limit(1)
+                                ->get();
+                                
+                                
+                                if(count($query8) == 0 && count($query9) > 0){
+                                    foreach ($query9 as $q9) {
+                                        $aluno1->id = 1;
+                                        $user->id = $q9->id + 1;
+                                        $aluno1->user_id = $user->id;
+                                            $user->save();
+                                            $aluno1->save();
+                                            return redirect('/pcaadmin');
+                                    }    
+                                }
+                                else{
+                                    foreach ($query9 as $q9) {
+                                        foreach ($query8 as $q8) {
+                                            $aluno1->id = $q8->id + 1;
+                                            $user->id = $q9->id + 1;
+                                            $aluno1->user_id = $user->id;
+    
+                                            $user->save();
+                                            $aluno1->save();
+                                            return redirect('/pcaadmin');
+                                              }
+                                    }
+                                   
                                 }
                                   
                                
@@ -154,13 +178,17 @@ class PCAController extends Controller
         $funcio->nome = $req->nome_func;
         $funcio->tipo_fun = $req->funcao;
         $funcio->telefone = $req->telefone;
-        $funcio->email_fun = $req->email>
+        $funcio->email_fun = $req->email;
         $funcio->genero = $req->genero_func;
-        $senha1 = $req->senha1;
-        $senha2 = $req->senha2;
-         
-        if(strcasecmp($senha1, $senha2) == 0){
-            $funcio->senha_func = Hash::make($senha1);
+
+        $user = new User;
+        $user->name = $req->nome_func;
+        $user->email = $req->email;
+        $user->permissao = $req->funcao;
+        $user->password = Hash::make("funcionario_2022");
+            $funcio->senha_func = "funcionario_2022";
+
+           
 
             //image upload
             if($req->hasfile('image') && $req->file('image')->isValid()){
@@ -177,14 +205,23 @@ class PCAController extends Controller
 
                 $funcio->data_nasc = $req->data_nasc;
 
+                $query = DB::table('users')
+                ->select('id')
+                ->orderBy('id', 'desc')
+                ->limit(1)
+                ->get();
+
+                foreach ($query as $q) {
+                $funcio->user_id = $q->id + 1;
+                
+                $user->save();    
                 $funcio->save();
                 return redirect('/pcaadmin');
+                }
+
             }
 
-        }else{
-            return redirect('/pcaadmin');
-            echo "falhou as senhas nao coincidem";
-        }
+        
     }
 
 
@@ -207,6 +244,29 @@ class PCAController extends Controller
         $user = auth()->user();
         return view('permissoes', ['search' => $search, 'funcionarios' => $funcionarios, 'allfunc' => $allfunc, 'user' => $user, 'rota' => $rota ]);
     }  
+
+public function update_permissao(Request $request){
+    $query = DB::table('users')
+    ->join('funcionarios', 'users.id', 'funcionarios.user_id')
+    ->where('funcionarios.id', $request->id)
+    ->get();
+
+
+  foreach ($query as $q) {
+    User::where('id', $q->user_id)
+        ->update(['permissao' => $request->permissao]);
+
+        Funcionario::where('id', $request->id)
+        ->update(['tipo_fun' => $request->permissao]);
+        
+       return redirect('/pcaadmin/permissoes');
+    }
+
+  
+
+
+}
+
     //cadastro de turmas
     public function turmas(){
         $rota = \Request::route()->getName();

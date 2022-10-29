@@ -8,10 +8,10 @@ class SecretariaController extends Controller
 {
     public function index(){
         $usuario = auth()->user();
-        if($usuario->permissao === "secretaria"){
+        if((strcasecmp($usuario->permissao, "secretaria")) == 0 || (strcasecmp($usuario->permissao, "pcaadmin")) == 0){
             return view('secretaria');
         }else{
-            return view('acessdenied');
-        }
+            return redirect('acessdenied');
+                }
 }
 }

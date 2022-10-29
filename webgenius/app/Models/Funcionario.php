@@ -24,4 +24,8 @@ class Funcionario extends Model
         'senha_fun',
     ];
 
+    public function user(){
+        return $this->belongsTo('App\Models\User');
+    }
+
 }

@@ -9,10 +9,10 @@ class TesourariaController extends Controller
 {
     public function index(){
             $usuario = auth()->user();
-            if($usuario->permissao === "tesouraria"){
+            if((strcasecmp($usuario->permissao, "tesouraria")) == 0 || (strcasecmp($usuario->permissao, "pcaadmin")) == 0){
                 return view('tesouraria');
             }else{
-                return view('acessdenied');
-            }
+                return redirect('acessdenied');
+                        }
     }
 }

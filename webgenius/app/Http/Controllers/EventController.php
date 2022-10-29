@@ -16,15 +16,15 @@ class EventController extends Controller
 {
     public function index(){
         return view('webgenius');
-        
-
     }
 
-    public function register(){
-        $turmas = Turma::all();
-        $classes = Classe::all();
-        $cursos = Curso::all();
-        return view('/auth/register', ['turmas' => $turmas, 'classes' => $classes, 'cursos' => $cursos]);
+    public function index_register(){
+        return redirect('/');
     }
+
+    public function acessdenied(){
+        return view('acessdenied');
+    }
+
 
 }

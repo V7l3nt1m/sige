@@ -13,13 +13,18 @@
     @endif
 </main>
   <h1>Alunos</h1>
+  <form action="/logout" method="POST">
+    @csrf
+    <a href="/logout" class="dropdown-item"  onclick="event.preventDefault();
+    this.closest('form').submit();">Sair
+</a>
+</form>
 
   <h3>Acessar notas</h3>
       <p><button type="button">I Trimestre</button> <button type="button">II Trimestre</button> <button type="button">III Trimestre</button></p>
     
       <h3>Informações do Aluno</h3>
        
-      @foreach ($query as $aluno)
       <p>Nome: {{$aluno->nome_aluno}}</p>
       
             <p></p>
@@ -37,6 +42,5 @@
           <label>Digite Novamente a senha <input type="password" name="password2"></label><br>
           <input type="submit" value="Validar">
 </form>
-@endforeach     
 </body>
 </html>

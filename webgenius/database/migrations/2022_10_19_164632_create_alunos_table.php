@@ -27,6 +27,7 @@ return new class extends Migration
             $table->double('propina')->nullable();
             $table->string('imagem_aluno');
             $table->string('senha_aluno');
+            $table->rememberToken();
          
            
             $table->timestamps();
