@@ -5,7 +5,7 @@
 <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <title>PCA</title>
+        <title>@yield('title')</title>
 
         <!-- Vendor styles -->
         <link rel="stylesheet" href="/template/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css">
@@ -13,10 +13,9 @@
         <link rel="stylesheet" href="/template/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.css">
         <link rel="stylesheet" href="/template/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css">
 
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
-
         <!-- App styles -->
         <link rel="stylesheet" href="/template/css/app.min.css">
+        <link rel="stylesheet" href="/template/style.css">
     </head>
 
     <body data-sa-theme="1">
@@ -38,13 +37,13 @@
                     <h1><a href="/">SIGE</a></h1>
                 </div>
 
-                
-                <form class="search" method="GET">
+                @yield('search')
+            <!--    <form class="search">
                     <div class="search__inner">
-                        <input type="text" class="search__text" placeholder="Pesquise por alunos, funcionários..." name="search">
+                        <input type="text" class="search__text" placeholder="Search for people, files, documents...">
                         <i class="zmdi zmdi-search search__helper" data-sa-action="search-close"></i>
                     </div>
-                </form>
+                </form> -->
 
                 <ul class="top-nav">
                     <li class="hidden-xl-up"><a href="#" data-sa-action="search-open"><i class="zmdi zmdi-search"></i></a></li>
@@ -118,9 +117,9 @@
                                 Alterar Cor do Tema
 
                                 <div class="btn-group btn-group--colors mt-2 d-block" data-toggle="buttons">
-                                    <label class="btn active border-0" style="background-color: #772036"><input type="radio" value="1" autocomplete="off"></label>
+                                    <label class="btn active border-0" style="background-color: #772036"><input type="radio" value="1" autocomplete="off" checked></label>
                                     <label class="btn border-0" style="background-color: #273C5B"><input type="radio" value="2" autocomplete="off"></label>
-                                    <label class="btn border-0" style="background-color: #174042"><input type="radio" value="3" autocomplete="off" checked></label>
+                                    <label class="btn border-0" style="background-color: #174042"><input type="radio" value="3" autocomplete="off"></label>
                                     <label class="btn border-0" style="background-color: #383844"><input type="radio" value="4" autocomplete="off"></label>
                                     <label class="btn border-0" style="background-color: #49423F"><input type="radio" value="5" autocomplete="off"></label>
 
@@ -154,14 +153,13 @@
                         <div class="user__info" data-toggle="dropdown">
                             <img class="user__img" src="/template/demo/img/profile-pics/8.jpg" alt="">
                             <div>
-                                <div class="user__name">{{$user->name}}</div>
+                                @yield('nome_aluno')
                                 <div class="user__email">{{$user->permissao}}</div>
                             </div>
                         </div>
 
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="/pcaadmin/perfil">Ver Perfil</a>
-                            <a class="dropdown-item" href="/pcaadmin/definições">Configurações</a>
+                            @yield('settings')
                             <form action="/logout" method="POST">
                                 @csrf
                                 <a href="/logout" class="dropdown-item"  onclick="event.preventDefault();
@@ -172,24 +170,21 @@
                     </div>
 
                     <ul class="navigation">
-                        <li class="navigation__active"><a href="{{route('pcaadmin')}}"><i class="zmdi zmdi-home"></i> Dashboard</a></li>
+                        
+                        <li class="navigation__active"><a href="{{ url()->previous() }}"><i class="zmdi zmdi-home"></i> Dashboard</a></li>
 
-                        <li class="navigation__sub @@variantsactive">
+                        @yield('navbar')
+                      <!--  <li class="navigation__sub @@variantsactive">
                             <a href="#"><i class="zmdi zmdi-settings"></i> Serviços</a>
 
-                            <ul>
-                                <li class="navigation__sub @@variantsactive">
-                                    <a href="#">Alunos</a>
-                                <ul>
-                                    <li class="@@sidebaractive"><a href="{{route('cadasaluno')}}">Cadastrar Alunos</a></li>
-                                    <li class="@@boxedactive"><a href="{{route('gerenciaralunos')}}">Gerenciar Alunos</a></li>
-                                </ul>
+                            
+                            
                             </li>
                             <li class="navigation__sub @@variantsactive">
-                                <a href="#">Funcionários</a>
+                                <a href="#">Functionários</a>
                             <ul>
-                                <li class="@@sidebaractive"><a href="{{route('funcionario')}}">Cadastrar Funcionários</a></li>
-                                <li class="@@boxedactive"><a href="/pcaadmin/gerenfuncionarios">Gerenciar Funcionários</a></li>
+                                <li class="@@sidebaractive"><a href="{{route('funcionario')}}">Cadastrar Functionários</a></li>
+                                <li class="@@boxedactive"><a href="#">Gerenciar Functionários</a></li>
                             </ul>
                         </li>
 
@@ -234,7 +229,7 @@
 
                         <li class="@@widgetactive"><a href="widgets.html"><i class="zmdi zmdi-account"></i> Livros de Ponto</a></li>
 
-                       
+                    -->
 
 
 
@@ -245,15 +240,7 @@
             </aside>
 
             <section class="content">
-                <header class="content__title">
-                    @if($rota == 'pcaadmin')
-                    <h1>Dashboard</h1>
-
-                    @else
-                    <h1>Dashboard > {{$rota}}</h1>
-                    @endif
-
-                </header>
+               
 
               
                
@@ -333,17 +320,9 @@
         <script src="/template/demo/js/flot-charts/chart-tooltips.js"></script>
         <script src="/template/demo/js/other-charts.js"></script>
         <script src="/template/demo/js/jqvmap.js"></script>
-        
-        <script src="/template/vendors/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-        <script src="/template/vendors/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script src="/template/vendors/bower_components/datatables.net-buttons/js/buttons.print.min.js"></script>
-        <script src="/template/vendors/bower_components/jszip/dist/jszip.min.js"></script>
-        <script src="/template/vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js"></script>
 
         <!-- App functions and actions -->
         <script src="/template/js/app.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-
     </body>
 
 <!--Designed By ALpha-->

@@ -1,27 +1,41 @@
 
-<div class="col-xxl-4 col-md-6">
-    <div class="card card2">
+@extends('PCA_admin')
 
-      <div class="card-body">
-        <h4 class="titulo">Gestão de Cursos</h4>
-        <div class="container text-center">
-          <div class="row">
-            <div class="col">
-              
-          
-            </div>
-            
-      
+@section('title', 'Admin')
 
+@section('content')
 
-        <div class="collapse" id="cadastrodecursos">
+<main>
+    @if(session('msg'))
+      <h1 style="font-size: 18px;
+      background-color: #d4edda;
+      width: 100%;
+      border: 1px solid #c3e6cb;
+      text-align: center;
+      color: #155724;
+      font-style: italic;
+      margin-bottom: 0;
+      padding: 10px;">
+        {{session('msg')}}
+      </h1>
+  @endif
+</main>
+
+<div class="card">
+  <div class="card-body">
+      <h2 class="titulo" align="center">Gerenciar Cursos</h2>
+<br>
+
           <form action="/pcaadmin/cursos" method="POST">
               @csrf
               @method('POST')
               <div class="row">
                   <div class="col-md-4">
-                    <label for="nome_curso">Nome do Curso</label>
                     <input type="text" class="form-control" id="nome_curso" placeholder="Nome do Curso" name="nome_curso" required="required">
+                  </div>
+                  
+                  <div class="col-md-6">
+                    <input type="submit" value="Cadastrar" class="btn btn-outline-success">
                   </div>
                  
                     
@@ -29,7 +43,7 @@
               <br>
               
               
-              <input type="submit" value="Cadastrar" class="btn btn-primary">
+              
 
             
             </form>
@@ -55,4 +69,8 @@
     }
 </script>
 
-@
+</div>
+</div>
+
+@endsection
+

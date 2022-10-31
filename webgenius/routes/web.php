@@ -39,7 +39,7 @@ Route::get('/acessdenied', [EventController::class, 'acessdenied'])->middleware(
 Route::get('/register', [EventController::class, 'index_register'])->middleware('auth')->name('register');
 
 //Rotas Aluno/aluno
-Route::put('/aluno/{id}', [AlunoController::class, 'update_senha'])->middleware('auth');
+Route::put('/alunos/definições/{id}', [AlunoController::class, 'update_senha'])->middleware('auth');
 
 //professor
 Route::put('/professor/{id}', [ProfessorController::class, 'update_professor'])->middleware('auth');
@@ -53,6 +53,7 @@ Route::get('/pcaadmin/alunos', [PCAController::class, 'gerenciaralunos'])->middl
 //rotas pcafuncionario
 Route::get('/pcaadmin/funcionarios', [PCAController::class, 'cadafuncionario'])->middleware('auth')->name('funcionario')->middleware('denied');
 Route::post('/pcaadmin/funcionarios', [PCAController::class, 'store_funcionarios'])->middleware('auth')->middleware('denied');
+Route::get('/pcaadmin/gerenfuncionarios', [PCAController::class, 'gerenciarfuncio'])->middleware('auth')->middleware('denied')->name('gerenciarfuncionarios');
 
 //rota permissoes
 Route::get('/pcaadmin/permissoes', [PCAController::class, 'permissoes'])->middleware('auth')->name('permissoes')->middleware('denied');
@@ -80,8 +81,22 @@ Route::post('/pcaadmin/classes', [PCAController::class, 'cadaclasses'])->middlew
 
 
 //rotas definicao
-Route::get('/pcaadmin/definições', [PCAController::class, 'definicao'])->middleware('auth')->name('definicao')->middleware('denied');
+Route::get('/pcaadmin/definições', [PCAController::class, 'defi_admin'])->middleware('auth')->name('definicao')->middleware('denied');
 Route::put('/pcaadmin/definições/{id}', [PCAController::class, 'updateinfo'])->middleware('auth')->middleware('denied');
+
+//rota perfil e definições
+Route::get('/alunos/perfil', [AlunoController::class, 'perfil'])->middleware('auth')->name('perfil');
+Route::get('/pcaadmin/perfil', [PCAController::class, 'perfil2'])->middleware('auth')->name('ver_perfil2')->middleware('denied');;
+Route::get('/alunos/definições', [AlunoController::class, 'settings'])->middleware('auth')->name('settings');
+
+
+Route::get('/secretaria/definições', [SecretariaController::class, 'defi_admin'])->middleware('auth');
+Route::get('/secretaria/perfil', [SecretariaController::class, 'perfil3'])->middleware('auth');
+
+Route::get('/tesouraria/definições', [TesourariaController::class, 'defi_admin'])->middleware('auth');
+Route::get('/tesouraria/perfil', [TesourariaController::class, 'perfil4'])->middleware('auth');
+
+
 
 
 Route::middleware([

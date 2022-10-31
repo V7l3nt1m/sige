@@ -29,4 +29,7 @@ class Curso extends Model
     public function disciplinas(){
         return $this->belongsToMany('App\Models\Disciplina');
     }
+    public function funcionarios(){
+        return $this->belongsToMany('App\Models\Funcionario');
+}
 }

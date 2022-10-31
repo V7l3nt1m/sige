@@ -2,30 +2,95 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use App\Models\Aluno;
 use App\Models\User;
+use App\Models\Aluno;
+use App\Models\Turma;
+use App\Models\Disciplina;
+use App\Models\Curso;
+use App\Models\Classe;
+use App\Models\Funcionario;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+
 
 
 class AlunoController extends Controller
 {
-    public function index(){
-        $usuario = auth()->user();
-        if((strcasecmp($usuario->permissao, "aluno")) == 0 || (strcasecmp($usuario->permissao, "pcaadmin")) == 0){
+    public function index(Request $request){
             $user = \Auth::user();
-
             $query = DB::table('alunos')
             ->where('user_id', $user->id)
             ->get();
-            foreach ($query as $aluno) {
-                return view('aluno', ['user' => $user, 'aluno' => $aluno]);
-            }
-        }else{
-            return redirect('acessdenied');        }
 
+            $query2 = DB::table('alunos')
+            ->select('nome_aluno')
+            ->join('users', 'users.id', 'alunos.user_id')
+            ->where('user_id', $user->id)
+            ->get();
+            foreach ($query as $aluno) {
+                foreach ($query2 as $aluno2) {
+                    $nome_aluno = $aluno2->nome_aluno;
+                    return view('aluno', ['user' => $user, 'aluno' => $aluno, 'nome_aluno' => $nome_aluno]);                }
+               
+            }
+        }   
+
+
+    public function perfil(Request $request){
+        $user = \Auth::user();
+        $rota = \Request::route()->getName();
+
+        $query = DB::table('alunos')
+        ->where('user_id', $user->id)
+        ->get();
+
+        $query2 = DB::table('alunos')
+        ->select('nome_aluno')
+        ->join('users', 'users.id', 'alunos.user_id')
+        ->where('user_id', $user->id)
+        ->get();
+        foreach ($query as $aluno) {
+            foreach ($query2 as $aluno2) {
+
+                $outrosdados = DB::table('alunos')
+                ->select('turmas.nome_turma', 'classes.nome_classe', 'cursos.nome_curso')
+                ->join('turmas', 'turmas.id', 'alunos.turma_id')
+                ->join('cursos', 'cursos.id', 'alunos.curso_id')
+                ->join('classes', 'classes.id', 'alunos.classe_id')
+                ->where('alunos.id', $aluno->id)
+                ->get();
+               
+                foreach ($outrosdados as $dados) {
+                    $nome_aluno = $aluno2->nome_aluno;
+                    return view('ver_perfil', ['user' => $user, 'aluno' => $aluno, 'rota' => $rota, 'nome_aluno' => $nome_aluno, 'dados' => $dados]);                }
+                }
+              
            
+        }
+    }
+
+    public function settings(){
+        $user = \Auth::user();
+        $rota = \Request::route()->getName();
+
+        $query = DB::table('alunos')
+        ->where('user_id', $user->id)
+        ->get();
+
+        $query2 = DB::table('alunos')
+        ->select('nome_aluno')
+        ->join('users', 'users.id', 'alunos.user_id')
+        ->where('user_id', $user->id)
+        ->get();
+        foreach ($query as $aluno) {
+            foreach ($query2 as $aluno2) {
+                $nome_aluno = $aluno2->nome_aluno;
+            
+                return view('definições', ['user' => $user, 'aluno' => $aluno, 'rota' => $rota, 'nome_aluno' => $nome_aluno]);                
+
+            }
+        }
     }
 
     public function update_senha(Request $request){
@@ -46,12 +111,12 @@ class AlunoController extends Controller
                     User::where('id', $q2->user_id)
                     ->update(['password' => $senha_aluno]);
                     
-                    return redirect('/aluno')->with('msg', 'Senha alterada com sucesso!'); 
+                    return redirect('/alunos/definições')->with('msg', 'Senha alterada com sucesso!'); 
                 }
                 elseif(strcasecmp($senha1, $senha2) != 0){
-                    return redirect('/aluno')->with('msg', 'As senhas não coincidem');
+                    return redirect('/alunos/definições')->with('msg', 'As senhas não coincidem');
                 }elseif(Hash::check($senha1, $q2->senha_aluno)){
-                    return redirect('/aluno')->with('msg', 'A senha já existe');
+                    return redirect('/alunos/definições')->with('msg', 'A senha já existe');
                 } 
                   
             }

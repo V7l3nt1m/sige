@@ -25,4 +25,8 @@ class Turma extends Model
     public function cursos(){
         return $this->belongsToMany('App\Models\Curso');
 }
+
+public function funcionarios(){
+        return $this->belongsToMany('App\Models\Funcionario');
+}
 }

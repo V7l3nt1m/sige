@@ -64,6 +64,7 @@ class PCAController extends Controller
         $aluno1->telefone_aluno = $req->telefone;
         $aluno1->email_aluno = $req->email;
         $aluno1->genero = $req->genero_aluno;
+        $aluno1->senha_aluno = "Aluno2022";
 
         $user = new User;
 
@@ -169,8 +170,12 @@ class PCAController extends Controller
 
     public function cadafuncionario(){
         $rota = \Request::route()->getName();
+        $turmas = Turma::all();
+        $cursos = Curso::all();
+        $classes = Classe::all();
+
         $user = auth()->user();
-        return view('cadafuncionario', ['user' => $user, 'rota' => $rota]);
+        return view('cadafuncionario', ['user' => $user, 'rota' => $rota, 'turmas' => $turmas, 'cursos' => $cursos, 'classes' => $classes]);
     }
 
     public function store_funcionarios(Request $req){
@@ -214,9 +219,46 @@ class PCAController extends Controller
                 foreach ($query as $q) {
                 $funcio->user_id = $q->id + 1;
                 
-                $user->save();    
-                $funcio->save();
-                return redirect('/pcaadmin');
+                    if (strcasecmp($req->funcao, "professor") == 0) {
+                        $query2 = DB::table('cursos')
+                    ->where('nome_curso', $req->curso)
+                    ->get();
+
+                    $query3 = DB::table('classes')
+                    ->where('nome_classe', $req->classe)
+                    ->get();
+
+                    $query4 = DB::table('turmas')
+                    ->where('nome_turma', $req->turma)
+                    ->get();
+                        $user->save();    
+                        $funcio->save();
+                    foreach ($query2 as $cursos) {
+                        foreach ($query3 as $classes) {
+                            foreach ($query4 as $turmas) {
+                                    $funcionarios = Funcionario::find($funcio->user_id);
+                                    $funcionarios->cursos()->attach($cursos->id);
+                                    $funcionarios->classes()->attach($classes->id);
+                                    $funcionarios->turmas()->attach($turmas->id);
+
+                                    $curso = Curso::findOrFail($cursos->id);
+                                    $classe = Classe::findOrFail($classes->id);
+                                    $turma = Turma::findOrFail($turmas->id);
+                                               
+                        
+                        return redirect('/pcaadmin/funcionarios')->with('msg','Cadastro feito com sucesso!');
+                            }
+                        }
+                    }
+                    
+                    }else{
+                        $user->save();    
+                        $funcio->save();    
+                        return redirect('/pcaadmin/funcionarios')->with('msg' ,'Cadastro feito com sucesso!');
+                    }
+
+
+                
                 }
 
             }
@@ -270,9 +312,11 @@ public function update_permissao(Request $request){
     //cadastro de turmas
     public function turmas(){
         $rota = \Request::route()->getName();
-
+        $cursos = Curso::all();
+        $classes = Classe::all();
         $user = auth()->user();
-        return view('cadaturma', ['user' => $user, 'rota' => $rota]);
+
+        return view('cadaturma', ['user' => $user, 'rota' => $rota, 'cursos' => $cursos, 'classes' => $classes]);
     }
   
     public function cadaturmas(Request $request){
@@ -386,10 +430,40 @@ public function update_permissao(Request $request){
         return view('definicoes', ['user' => $user, 'rota' => $rota ]);
     }
 
-    public function updateinfo(Request $re){
-            $user = auth()->user();
-            User::findOrFail($re->id)->update($re->all());
-            return redirect('/pcaadmin/definições');
+    public function updateinfo(Request $request){
+        $user = auth()->user();
+        $nome_user = $request->nome_user;
+        $senha1 = $request->password1;
+        $senha2 = $request->password2;
+
+        $query2 = DB::table('users')
+        ->join('funcionarios', 'users.id', 'funcionarios.user_id')
+        ->where('funcionarios.user_id', $user->id)
+        ->get();
+
+
+           foreach ($query2 as $q2) {
+                if(strcasecmp($senha1, $senha2) == 0 && ! Hash::check($senha1, $q2->senha_func)){
+                    $senha_func = Hash::make($senha1);
+                    Funcionario::where('id', $request->id)
+                    ->update(['senha_func' => $senha_func],
+                            ['nome' => $nome_user]
+                    )
+                    ;
+                    User::where('id', $user->id)
+                    ->update(['name', $nome_user],
+                        ['password' => $senha_func]);
+
+                    return redirect('/pcaadmin/definições')->with('msg', 'Senha alterada com sucesso!'); 
+                }
+                elseif(strcasecmp($senha1, $senha2) != 0){
+                    return redirect('/pcaadmin/definições')->with('msg', 'As senhas não coincidem');
+                }elseif(Hash::check($senha1, $q2->senha_func)){
+                    return redirect('/pcaadmin/definições')->with('msg', 'A senha já existe');
+                } 
+                  
+            }  
+
     }
 
     public function classes(){
@@ -412,6 +486,7 @@ public function update_permissao(Request $request){
         $turmas = Turma::all();
         $cursos = Curso::all();
         $classes = classe::all();
+        $alunos2 = Aluno::all();
 
         $user = auth()->user();
 
@@ -428,6 +503,7 @@ public function update_permissao(Request $request){
             ->join('cursos', 'cursos.id', 'alunos.curso_id')
             ->join('classes', 'classes.id', 'alunos.classe_id')
             ->where('nome_aluno', 'like', '%'.$search.'%')
+            ->orWhere('num_processo', 'like', '%'.$search.'%')
             ->get();
 
 
@@ -463,12 +539,12 @@ public function update_permissao(Request $request){
             
         
             return view('gerenciaralunos', ['user' => $user, 'rota' => $rota, 'alunos' => $alunos, 'search' => $search, 'turmas' => $turmas, 'cursos' => $cursos,'classes' => $classes,
-            'query1' => $query1, 'classe_busca' => $classe_busca, 'turma_busca' => $turma_busca, 'curso_busca' => $curso_busca
+            'query1' => $query1, 'classe_busca' => $classe_busca, 'turma_busca' => $turma_busca, 'curso_busca' => $curso_busca, 'alunos2' => $alunos2
         ]);
            }
            else{
                 $query1 = "";
-            return view('gerenciaralunos', ['user' => $user, 'rota' => $rota, 'alunos' => $alunos, 'search' => $search, 'turmas' => $turmas, 'cursos' => $cursos,'classes' => $classes, 'query1' => $query1 
+            return view('gerenciaralunos', ['user' => $user, 'rota' => $rota, 'alunos' => $alunos, 'search' => $search, 'turmas' => $turmas, 'cursos' => $cursos,'classes' => $classes, 'query1' => $query1 , 'alunos2' => $alunos2
         ]);
            }
        
@@ -479,18 +555,21 @@ public function update_permissao(Request $request){
         $classes = Classe::all();
         $cursos = Curso::all();
         $rota = \Request::route()->getName();
-        $search = request('search');
-        if($search){
 
-            $alunos = Aluno::where([
-                ['nome_aluno', 'like', '%'.$search.'%']
-            ])->get();
-        }else{
-            $alunos = Aluno::all();
-        }
+        $query = DB::table('turmas')
+       ->select('classes.nome_classe', 'cursos.nome_curso', 'turmas.nome_turma')
 
+       ->join('classe_turma', 'classe_turma.turma_id', 'turmas.id')
+       ->join('classes', 'classes.id', 'classe_turma.classe_id')
+
+       ->join('classe_curso', 'classes.id', 'classe_curso.classe_id')
+       ->join('cursos', 'cursos.id', 'classe_curso.curso_id')      
+
+        ->get();
+
+       echo $query;
         $user = auth()->user();
-        return view('gerenturmas', ['user' => $user, 'rota' => $rota, 'alunos' => $alunos, 'search' => $search, 'turmas' => $turmas, 'classes' => $classes, 'cursos' => $cursos ]);
+        return view('gerenturmas', ['user' => $user, 'rota' => $rota,'turmas' => $turmas, 'classes' => $classes, 'cursos' => $cursos, 'query' => $query]);
     }
 
     public function associar_turmas(Request $req){
@@ -519,13 +598,67 @@ public function update_permissao(Request $request){
                                 $curso = Curso::findOrFail($q2->id);
                                 $classe = Classe::findOrFail($q3->id);
 
-                                return redirect('/pcaadmin');
+                                return redirect('/pcaadmin/gerenciarturmas')->with('msg', 'Associação Concluida!');
                             }
                         }
                     }
         
     }
-}
+
+    //perfil
+    public function perfil2(Request $request){
+        $user = \Auth::user();
+
+        $funcionarios = DB::table('users')
+        ->join('funcionarios', 'users.id', 'funcionarios.user_id')
+        ->where('funcionarios.user_id', $user->id)
+        ->get();
+
+            return view('ver_perfil2', ['user' => $user, 'funcionarios' => $funcionarios]);   
+
+        
+          
+    }
+
+    public function defi_admin(){
+        $user = \Auth::user();
+
+        $funcionarios = DB::table('users')
+        ->join('funcionarios', 'users.id', 'funcionarios.user_id')
+        ->where('funcionarios.user_id', $user->id)
+        ->get();
+
+        
+        foreach ($funcionarios as $funcionario) {
+            return view('admin_defi', ['user' => $user, 'funcionario' => $funcionario]);   
+        }
+                             
+
+            
+        }
+//gerenciar funcionarios
+        public function gerenciarfuncio(){
+        $user = auth()->user();
+        $rota = \Request::route()->getName();
+
+        $search = request('search');
+        if($search){
+
+            $funcionarios = DB::table('funcionarios')
+            ->where('nome', 'like', '%'.$search.'%')
+            ->orWhere('tipo_fun', 'like', '%'.$search.'%')
+            ->get();
+        }else{
+            $funcionarios = Funcionario::all();
+        }
+        return view('g_func', ['user' => $user, 'rota' => $rota,
+         'funcionarios' => $funcionarios, 'search' => $search]);
+          
+       
+        }
+    }
+
+
 
 
 

@@ -1,55 +1,34 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="en">
+    
+<!--Designed By ALpha-->
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Acesso Recusado</title>
-    <link rel="stylesheet" href="/acessdenied.css">
-    <meta charset="utf-8">
-    
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="fonts/icomoon/style.css">
-    <link href="/../assets/css/style.css" rel="stylesheet">
+        <!-- Vendor styles -->
+        <link rel="stylesheet" href="/template/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css">
+          <title>Erro 404</title>
+        <!-- App styles -->
+        <link rel="stylesheet" href="/template/css/app.min.css">
+    </head>
 
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <body data-sa-theme="1">
+        <section class="error">
+            <div class="error__inner">
+                <h1>404</h1>
+                <h2>A página que tentou acessar não existe ou não possui permissão.</h2>
+                <p>Por favor, contacte o seu administrador para reportar o erro!</p>
+                <a class="btn btn-dark btn--icon-text" href="/"><i class="zmdi zmdi-home"></i>Voltar</a>
+            </div>
+        </section>
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-    
-    <!-- Style -->
-    <link rel="stylesheet" href="css/style.css">
-</head>
-<body>
-  <div id="preloader"></div>
+        
+        <!-- Vendors -->
+        <script src="/template/vendors/bower_components/jquery/dist/jquery.min.js"></script>
+        <script src="/template/vendors/bower_components/popper.js/dist/umd/popper.min.js"></script>
+        <script src="/template/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    </body>
 
-    <div class="wrapper">
-        <div class="landing-page">
-          
-            <img src="/componentes/images/acessdenied.svg" alt="acessdenied">
-          
-          <h1> Acesso Recusado.</h1>
-          <p>Contacte o seu administrador para fornecer permissão a este serviço.</p>
-          <a href="/"><button>Voltar</button></a>
-        </div>
-      </div>
-
-      <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/popper.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/main.js"></script>
-
-    <script src="assets/vendor/aos/aos.js"></script>
-    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-    <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-    <script src="assets/vendor/php-email-form/validate.js"></script>
-  
-    <!-- Template Main JS File -->
-    <script src="assets/js/main.js"></script>
-</body>
+<!--Designed By ALpha-->
 </html>

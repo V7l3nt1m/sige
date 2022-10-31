@@ -22,9 +22,16 @@ class Classe extends Model
     public function turmas(){
         return $this->belongsToMany('App\Models\Turma');
     }
+    public function disciplinas(){
+        return $this->belongsToMany('App\Models\Disciplina');
+    }
 
     public function cursos(){
         return $this->belongsToMany('App\Models\Curso');
     }
+
+    public function funcionarios(){
+        return $this->belongsToMany('App\Models\Funcionario');
+}
 }
 
