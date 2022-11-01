@@ -136,7 +136,7 @@
         <div class="col-md-3">
           <div class="form-group">
             <div class="select">
-                <select class="form-select" name="classe">
+                <select class="form-select btn-dark" name="classe">
                     <option value="" selected disabled>Classe</option>
                     @foreach ($classes as $classe)
                         <option value="{{$classe->nome_classe}}">{{$classe->nome_classe}}</option>
@@ -148,7 +148,7 @@
         <div class="col-md-3">
           <div class="form-group">
             <div class="select">
-                <select class="form-select" name="curso">
+                <select class="form-select btn-dark" name="curso">
                     <option value="" selected disabled>Curso</option>
                     @foreach ($cursos as $curso)
                     <option value="{{$curso->nome_curso}}">{{$curso->nome_curso}}</option>
@@ -160,7 +160,7 @@
         <div class="col-md-3">
           <div class="form-group">
             <div class="select">
-                <select class="form-select" name="turma">
+                <select class="form-select btn-dark" name="turma">
                     <option value="" selected disabled>Turma</option>
                     @foreach ($turmas as $turma)
                     <option value="{{$turma->nome_turma}}">{{$turma->nome_turma}}</option>

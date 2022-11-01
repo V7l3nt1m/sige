@@ -215,55 +215,107 @@ class PCAController extends Controller
                 ->orderBy('id', 'desc')
                 ->limit(1)
                 ->get();
+                $consulta = DB::table('funcionarios')
+                ->select('id')
+                ->orderBy('id', 'desc')
+                ->limit(1)
+                ->get();
 
-                foreach ($query as $q) {
-                $funcio->user_id = $q->id + 1;
-                
-                    if (strcasecmp($req->funcao, "professor") == 0) {
-                        $query2 = DB::table('cursos')
-                    ->where('nome_curso', $req->curso)
-                    ->get();
-
-                    $query3 = DB::table('classes')
-                    ->where('nome_classe', $req->classe)
-                    ->get();
-
-                    $query4 = DB::table('turmas')
-                    ->where('nome_turma', $req->turma)
-                    ->get();
-                        $user->save();    
-                        $funcio->save();
-                    foreach ($query2 as $cursos) {
-                        foreach ($query3 as $classes) {
-                            foreach ($query4 as $turmas) {
-                                    $funcionarios = Funcionario::find($funcio->user_id);
-                                    $funcionarios->cursos()->attach($cursos->id);
-                                    $funcionarios->classes()->attach($classes->id);
-                                    $funcionarios->turmas()->attach($turmas->id);
-
-                                    $curso = Curso::findOrFail($cursos->id);
-                                    $classe = Classe::findOrFail($classes->id);
-                                    $turma = Turma::findOrFail($turmas->id);
-                                               
+            if(count($consulta) > 0){
+                foreach ($consulta as $k) {
+                    $funcio->id = $k->id + 1;
+                    foreach ($query as $q) {
+                        $funcio->user_id = $q->id + 1;
                         
-                        return redirect('/pcaadmin/funcionarios')->with('msg','Cadastro feito com sucesso!');
+                            if (strcasecmp($req->funcao, "professor") == 0) {
+                                $query2 = DB::table('cursos')
+                            ->where('nome_curso', $req->curso)
+                            ->get();
+        
+                            $query3 = DB::table('classes')
+                            ->where('nome_classe', $req->classe)
+                            ->get();
+        
+                            $query4 = DB::table('turmas')
+                            ->where('nome_turma', $req->turma)
+                            ->get();
+                                $user->save();    
+                                $funcio->save();
+                            foreach ($query2 as $cursos) {
+                                foreach ($query3 as $classes) {
+                                    foreach ($query4 as $turmas) {
+                                            $funcionarios = Funcionario::find($funcio->id);
+                                            $funcionarios->cursos()->attach($cursos->id);
+                                            $funcionarios->classes()->attach($classes->id);
+                                            $funcionarios->turmas()->attach($turmas->id);
+        
+                                            $curso = Curso::findOrFail($cursos->id);
+                                            $classe = Classe::findOrFail($classes->id);
+                                            $turma = Turma::findOrFail($turmas->id);
+                                                       
+                                
+                                return redirect('/pcaadmin/funcionarios')->with('msg','Cadastro feito com sucesso!');
+                                    }
+                                }
                             }
+                            
+                            }else{
+                                $user->save();    
+                                $funcio->save();    
+                                return redirect('/pcaadmin/funcionarios')->with('msg' ,'Cadastro feito com sucesso!');
+                            }
+        
+        
+                        
+                        }
+                }
+                
+            }else{
+                 
+                $funcio->id = 1;
+                foreach ($query as $q) {
+                    $funcio->user_id = $q->id + 1;
+                if (strcasecmp($req->funcao, "professor") == 0) {
+                    $query2 = DB::table('cursos')
+                ->where('nome_curso', $req->curso)
+                ->get();
+
+                $query3 = DB::table('classes')
+                ->where('nome_classe', $req->classe)
+                ->get();
+
+                $query4 = DB::table('turmas')
+                ->where('nome_turma', $req->turma)
+                ->get();
+                    $user->save();    
+                    $funcio->save();
+                foreach ($query2 as $cursos) {
+                    foreach ($query3 as $classes) {
+                        foreach ($query4 as $turmas) {
+                                $funcionarios = Funcionario::find($funcio->id);
+                                $funcionarios->cursos()->attach($cursos->id);
+                                $funcionarios->classes()->attach($classes->id);
+                                $funcionarios->turmas()->attach($turmas->id);
+
+                                $curso = Curso::findOrFail($cursos->id);
+                                $classe = Classe::findOrFail($classes->id);
+                                $turma = Turma::findOrFail($turmas->id);
+                                           
+                    
+                    return redirect('/pcaadmin/funcionarios')->with('msg','Cadastro feito com sucesso!');
                         }
                     }
-                    
-                    }else{
-                        $user->save();    
-                        $funcio->save();    
-                        return redirect('/pcaadmin/funcionarios')->with('msg' ,'Cadastro feito com sucesso!');
-                    }
-
-
-                
                 }
-
+                
+                }else{
+                    $user->save();    
+                    $funcio->save();    
+                    return redirect('/pcaadmin/funcionarios')->with('msg' ,'Cadastro feito com sucesso!');
+                }
+            }
             }
 
-        
+            }
     }
 
 

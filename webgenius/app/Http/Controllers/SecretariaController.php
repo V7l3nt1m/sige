@@ -36,7 +36,7 @@ public function defi_admin(){
     }
                          
     }
-    public function perfil3(Request $request){
+    public function perfil3(){
         $user = \Auth::user();
 
         $funcionarios = DB::table('users')

@@ -96,6 +96,11 @@ Route::get('/secretaria/perfil', [SecretariaController::class, 'perfil3'])->midd
 Route::get('/tesouraria/definições', [TesourariaController::class, 'defi_admin'])->middleware('auth');
 Route::get('/tesouraria/perfil', [TesourariaController::class, 'perfil4'])->middleware('auth');
 
+//Professor rotas
+Route::get('/professor/definições', [ProfessorController::class, 'settings_professor'])->middleware('auth');
+Route::get('/professor/perfil', [ProfessorController::class, 'perfil_professor'])->middleware('auth');
+Route::get('/professor/minhas_turmas', [ProfessorController::class, 'minhas_turmas'])->middleware('auth');
+Route::put('/professor/definições/{id}', [ProfessorController::class, 'update_professor'])->middleware('auth');
 
 
 
