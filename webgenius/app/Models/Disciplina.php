@@ -22,4 +22,8 @@ class Disciplina extends Model
         return $this->belongsToMany('App\Models\Classe');
     }
 
+    public function funcionarios(){
+        return $this->belongsToMany('App\Models\Funcionario');
+    }
+
 }

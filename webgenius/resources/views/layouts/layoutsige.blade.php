@@ -10,6 +10,7 @@
         <!-- Vendor styles -->
         <link rel="stylesheet" href="/template/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css">
         <link rel="stylesheet" href="/template/vendors/bower_components/animate.css/animate.min.css">
+        <link rel="stylesheet" href="/template/vendors/bower_components/select2/dist/css/select2.min.css">
         <link rel="stylesheet" href="/template/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.css">
         <link rel="stylesheet" href="/template/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css">
 
@@ -151,7 +152,13 @@
 
                     <div class="user">
                         <div class="user__info" data-toggle="dropdown">
-                            <img class="user__img" src="/template/demo/img/profile-pics/8.jpg" alt="">
+                            @if(isset($imagem_fun) == 1)
+                            <img class="user__img" src="/img/funcionarios/{{$imagem_fun}}" alt="{{$imagem_fun}}">
+                            @elseif(isset($imagem_aluno) == 1)
+                            <img class="user__img" src="/img/alunos/{{$imagem_aluno}}" alt="{{$imagem_aluno}}">
+                            @elseif(isset($funcionario->imagem_fun) == 1)
+                            <img class="user__img" src="/img/funcionarios/{{$funcionario->imagem_fun}}" alt="{{$funcionario->imagem_fun}}">
+                            @endif
                             <div>
                                 @yield('nome_aluno')
                                 <div class="user__email">{{$user->permissao}}</div>
@@ -171,8 +178,6 @@
 
                     <ul class="navigation">
                         
-                        <li class="navigation__active"><a href="{{ url()->previous() }}"><i class="zmdi zmdi-home"></i> Dashboard</a></li>
-
                         @yield('navbar')
                       <!--  <li class="navigation__sub @@variantsactive">
                             <a href="#"><i class="zmdi zmdi-settings"></i> Serviços</a>
@@ -312,7 +317,7 @@
         <script src="/template/vendors/bower_components/peity/jquery.peity.min.js"></script>
         <script src="/template/vendors/bower_components/moment/min/moment.min.js"></script>
         <script src="/template/vendors/bower_components/fullcalendar/dist/fullcalendar.min.js"></script>
-
+        <script src="/template/vendors/bower_components/select2/dist/js/select2.full.min.js"></script>
         <!-- Charts and maps-->
         <script src="/template/demo/js/flot-charts/curved-line.js"></script>
         <script src="/template/demo/js/flot-charts/line.js"></script>

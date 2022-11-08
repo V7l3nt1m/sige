@@ -33,8 +33,20 @@
       padding: 10px;">
         {{session('msg')}}
       </h1>
+      @elseif(session('erro'))
+      <h1 style="font-size: 18px;
+      background-color: red;
+      width: 100%;
+      border: 1px solid red;
+      text-align: center;
+      color: white;
+      font-style: italic;
+      margin-bottom: 0;
+      padding: 10px;">
+        {{session('erro')}}
+      </h1>
   @endif
-
+  
   </main>
 
 <header class="content__title">

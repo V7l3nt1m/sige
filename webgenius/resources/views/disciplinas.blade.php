@@ -36,7 +36,7 @@
                       <input type="text" class="form-control" id="nome_disciplina" placeholder="Nome da Disciplina" name="nome_disciplina" required="required">
                     </div>
                       <div class="col-md-4">
-                        <select name="curso" id="curso_disciplina" class="form-select btn-dark">
+                        <select name="curso" id="curso_disciplina" class="select2" data-minimum-results-for-search="Infinity">
                           <option selected value="" disabled>Curso</option>
                           @foreach ($cursos as $curso)
                           <option value="{{$curso->nome_curso}}">{{$curso->nome_curso}}</option>
@@ -44,7 +44,7 @@
                         </select>
                           </div>
                           <div class="col-md-4">
-                              <select name="classe" id="classe_turma" class="form-select btn-dark">
+                              <select name="classe" id="classe_disciplina" class="select2" data-minimum-results-for-search="Infinity">
                                 <option selected value="" disabled>Classe</option>
                               @foreach ($classes as $classe)
                               <option value="{{$classe->nome_classe}}">{{$classe->nome_classe}}</option>

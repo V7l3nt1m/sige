@@ -17,6 +17,18 @@
       padding: 10px;">
         {{session('msg')}}
       </h1>
+      @elseif(session('erro'))
+      <h1 style="font-size: 18px;
+      background-color: red;
+      width: 100%;
+      border: 1px solid #c3e6cb;
+      text-align: center;
+      color: white;
+      font-style: italic;
+      margin-bottom: 0;
+      padding: 10px;">
+        {{session('erro')}}
+      </h1>
   @endif
 
   </main>
@@ -65,8 +77,19 @@
                 <td>{{$funcionario->genero}}</td>
                 <td>{{$funcionario->tipo_fun}}</td>
                 <td>
-            <button class="btn btn-light btn-sm" title="Actualizar informações do funcionario" data-toggle="tooltip" data-placement="bottom"><i class="zmdi zmdi-refresh"></i></button>
-            <button class="btn btn-light btn-sm" title="Eliminar registro do funcionario" data-toggle="tooltip" data-placement="bottom"><i class="zmdi zmdi-close"></i></button>
+           <div class="input-group">
+                        
+                           <a href="/pcaadmin/edit/{{$funcionario->id}}" class="btn btn-light btn-sm" title="Actualizar informações do funcionario" data-toggle="tooltip" data-placement="bottom"><i class="zmdi zmdi-refresh"></i></a>
+                           @if(strcasecmp($funcionario->tipo_fun, "professor") == 0)
+                           <a href="/pcaadmin/adicionarturma/{{$funcionario->id}}" class="btn btn-light btn-sm" title="Adicionar Turma, Classe, Curso" data-toggle="tooltip" data-placement="bottom"><i class="zmdi zmdi-plus"></i></a>
+                           @endif
+                           <form action="/pcaadmin/gerenfuncionarios/{{$funcionario->id}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-light btn-sm" title="Eliminar registro do funcionario" data-toggle="tooltip" data-placement="bottom"><i class="zmdi zmdi-close"></i></button>
+                        </form>  
+                    </div>
+
                 </td>
             </tr>
         </tbody>
@@ -111,8 +134,18 @@
                 <td>{{$funcionario->genero}}</td>
                 <td>{{$funcionario->tipo_fun}}</td>
                 <td>
-            <button class="btn btn-light btn-sm" title="Actualizar informações do funcionario" data-toggle="tooltip" data-placement="bottom"><i class="zmdi zmdi-refresh"></i></button>
-            <button class="btn btn-light btn-sm" title="Eliminar registro do funcionario" data-toggle="tooltip" data-placement="bottom"><i class="zmdi zmdi-close"></i></button>
+            <div class="input-group">
+                <a href="/pcaadmin/edit/{{$funcionario->id}}" class="btn btn-light btn-sm" title="Actualizar informações do funcionario" data-toggle="tooltip" data-placement="bottom"><i class="zmdi zmdi-refresh"></i></a>
+                @if(strcasecmp($funcionario->tipo_fun, "professor") == 0)
+                <a href="/pcaadmin/adicionarturma/{{$funcionario->id}}" class="btn btn-light btn-sm" title="Adicionar Turma, Classe, Curso" data-toggle="tooltip" data-placement="bottom"><i class="zmdi zmdi-plus"></i></a>
+                @endif
+                
+                <form action="/pcaadmin/gerenfuncionarios/{{$funcionario->id}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button type="submit" class="btn btn-light btn-sm" title="Eliminar registro do funcionario" data-toggle="tooltip" data-placement="bottom"><i class="zmdi zmdi-close"></i></button>
+                </form>
+            </div>
                 </td>
             </tr>
         </tbody>

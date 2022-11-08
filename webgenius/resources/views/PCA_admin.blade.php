@@ -10,6 +10,7 @@
         <!-- Vendor styles -->
         <link rel="stylesheet" href="/template/vendors/bower_components/material-design-iconic-font/dist/css/material-design-iconic-font.min.css">
         <link rel="stylesheet" href="/template/vendors/bower_components/animate.css/animate.min.css">
+        <link rel="stylesheet" href="/template/vendors/bower_components/select2/dist/css/select2.min.css">
         <link rel="stylesheet" href="/template/vendors/bower_components/jquery.scrollbar/jquery.scrollbar.css">
         <link rel="stylesheet" href="/template/vendors/bower_components/fullcalendar/dist/fullcalendar.min.css">
 
@@ -41,7 +42,7 @@
                 
                 <form class="search" method="GET">
                     <div class="search__inner">
-                        <input type="text" class="search__text" placeholder="Pesquise por alunos, funcionários..." name="search">
+                        <input type="text" class="search__text" placeholder="Pesquise por alunos, funcionários, turmas..." name="search">
                         <i class="zmdi zmdi-search search__helper" data-sa-action="search-close"></i>
                     </div>
                 </form>
@@ -152,7 +153,11 @@
 
                     <div class="user">
                         <div class="user__info" data-toggle="dropdown">
-                            <img class="user__img" src="/template/demo/img/profile-pics/8.jpg" alt="">
+                            @if(isset($imagem_fun) == 1)
+                            <img class="user__img" src="/img/funcionarios/{{$imagem_fun}}" alt="{{$imagem_fun}}">
+                            @elseif(isset($imagem_aluno) == 1)
+                            <img class="user__img" src="/img/alunos/{{$imagem_aluno}}" alt="{{$imagem_aluno}}">
+                            @endif
                             <div>
                                 <div class="user__name">{{$user->name}}</div>
                                 <div class="user__email">{{$user->permissao}}</div>
@@ -172,7 +177,6 @@
                     </div>
 
                     <ul class="navigation">
-                        <li class="navigation__active"><a href="{{route('pcaadmin')}}"><i class="zmdi zmdi-home"></i> Dashboard</a></li>
 
                         <li class="navigation__sub @@variantsactive">
                             <a href="#"><i class="zmdi zmdi-settings"></i> Serviços</a>
@@ -339,6 +343,8 @@
         <script src="/template/vendors/bower_components/datatables.net-buttons/js/buttons.print.min.js"></script>
         <script src="/template/vendors/bower_components/jszip/dist/jszip.min.js"></script>
         <script src="/template/vendors/bower_components/datatables.net-buttons/js/buttons.html5.min.js"></script>
+        <script src="/template/vendors/bower_components/jquery-mask-plugin/dist/jquery.mask.min.js"></script>
+<script src="/template/vendors/bower_components/select2/dist/js/select2.full.min.js"></script>
 
         <!-- App functions and actions -->
         <script src="/template/js/app.min.js"></script>

@@ -18,6 +18,8 @@
       {{session('msg')}}
     </h1>
 @endif
+</main>
+
 <div class="card">
   <div class="card-body">
       <h2 class="titulo" align="center">Cadastrar Turmas</h2>
@@ -35,7 +37,7 @@
                  
                     <div class="col-md-4">
                       <label for="curso_turma">Associar a um curso</label>
-                      <select name="curso_turma" id="curso_turma" class="form-select btn-dark">
+                      <select name="curso_turma" id="curso_turma" class="select2" data-minimum-results-for-search="Infinity">
                         <option selected value="" disabled>Curso</option>
                         @foreach($cursos as $curso)
                         <option value="{{$curso->nome_curso}}">{{$curso->nome_curso}}</option>
@@ -47,7 +49,7 @@
                           <br>
                           
                             <label for="classe_turma">Associar a uma classe</label>
-                            <select name="classe_turma" id="classe_turma" class="form-select btn-dark">
+                            <select name="classe_turma" id="classe_turma" class="select2" data-minimum-results-for-search="Infinity">
                               <option selected value="" disabled>Classe</option>
                               @foreach($classes as $classe)
                               <option value="{{$classe->nome_classe}}">{{$classe->nome_classe }}</option>

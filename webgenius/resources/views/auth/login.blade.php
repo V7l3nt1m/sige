@@ -25,7 +25,6 @@
          <!-- Vendor CSS Files -->
 
 
-  <link href="assets/css/style.css" rel="stylesheet">
     </head>
 
     <body class="bg-white">
@@ -53,7 +52,7 @@
                                 </div>
         
                                 <div class="mt-4 mt-md-5 text-center">
-                                        <p class="mb-0" style="color: rgb(55, 81, 126)">© <script>document.write(new Date().getFullYear())</script> Copyright SIGE. All Rights Reserved </p>
+                                        <p class="mb-0" style="color: #772036">© <script>document.write(new Date().getFullYear())</script> Copyright SIGE. All Rights Reserved </p>
                                 </div>
                             </div>
                         
@@ -113,7 +112,7 @@
                                                     </div>
                 
                                                     <div class="mt-3">
-                                                      <x-jet-button class="btn btn-primary w-100">
+                                                      <x-jet-button class="btn btn-primary w-100" style="background: #772036">
                                                         {{ __('Iniciar Sessão') }}
                                                                             </x-jet-button>
                                                           

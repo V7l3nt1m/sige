@@ -4,20 +4,17 @@
 
 @section('content')
 
-<div class="col-xxl-4 col-md-6">
-    <div class="card card2">
-      <div class="card-body">
-        <h4 class="titulo">Permissoes dos Funcionários</h4>
-            <form action="/pcaadmin/permissoes" method="GET">
-                <input type="text" name="search" id="procurar" class="form-control" placeholder="Pesquise por algum funcionario">
-            </form>
-                <div>
+<div class="card">
+  <div class="card-body">
+    <h2 class="titulo" align="center">Permissoes dos Funcionários</h2>
+         
+                <div class="table-responsive">
                     @if($search)
                     <div class="container">
                         <br>
                         <h4>Buscando por: {{$search}}</h4>
                     </div>
-                    <table class="table">
+                    <table style="color: white" class="table table-inverse">
                         <thead>
                           <tr>
                             <th scope="col">#</th>
@@ -27,7 +24,7 @@
                             <th scope="col">Alterar permissoes</th>
                           </tr>
                         </thead>
-                        <tbody>
+                        <tbody class="table-striped">
                           @foreach ($funcionarios as $funcionario)
                           <tr>
                            
@@ -68,13 +65,12 @@
                     
                 </div>
                 <br>
-                <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                    Mostrar todos os funcionários
-                </button>
-                <div class="collapse" id="collapseExample">
+               
+                <div>
                     <br>
-                    <div>
-                        <table class="table">
+                    @if(!$search)
+                    <div class="table-responsive">
+                        <table style="color: white" class="table table-inverse">
                             <thead>
                               <tr>
                                 <th scope="col">#</th>
@@ -84,7 +80,7 @@
                                 <th scope="col">Alterar permissoes</th>
                               </tr>
                             </thead>
-                            <tbody>
+                            <tbody class="table-striped">
                                 @foreach ($allfunc as $todosfuncionarios)
                               <tr>
                                 <th scope="row">{{$loop->index+1}}</th>
@@ -108,6 +104,7 @@
                             </tbody>
                           </table>
                         </div>
+                        @endif
                   </div>
             </form>
         

@@ -12,9 +12,10 @@
 @endsection
 
 
+
 @section('navbar')
 <li class="navigation__sub @@variantsactive">
-    <a href="#"><i class="zmdi zmdi-accounts"></i> Minhas turmas</a>
+    <li class="@@widgetactive"><a href="/professor/minhas_turmas"><i class="zmdi zmdi-accounts"></i> Minhas turmas</a></li>
     
     <li class="navigation__sub @@variantsactive">
         <a href="#"><i class="zmdi zmdi-assignment-check"></i> Lançar Notas</a>
@@ -52,8 +53,20 @@
       padding: 10px;">
         {{session('msg')}}
       </h1>
+      @elseif(session('erro'))
+      <h1 style="font-size: 18px;
+      background-color: red;
+      width: 100%;
+      border: 1px solid red;
+      text-align: center;
+      color: white;
+      font-style: italic;
+      margin-bottom: 0;
+      padding: 10px;">
+        {{session('erro')}}
+      </h1>
   @endif
-
+  
   </main>
 
 <header class="content__title">
@@ -78,7 +91,7 @@
                                 <div class="input-group">
                                     <span class="input-group-addon"><i class="zmdi zmdi-account"></i></span>
                                      <div class="form-group">
-                                         <input type="text" required name="nome_user" class="form-control" placeholder="Nome de usuário" value="{{$funcionario->name}}">
+                                         <input type="text" required name="nome_user" class="form-control" placeholder="Nome de usuário" value="{{ $funcionario->nome }}">
                                          <i class="form-group__bar"></i>
                                      </div>
                                  </div>

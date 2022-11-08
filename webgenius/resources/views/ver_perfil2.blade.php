@@ -27,7 +27,7 @@
         <a href="#">Funcionários</a>
     <ul>
         <li class="@@sidebaractive"><a href="{{route('funcionario')}}">Cadastrar Funcionários</a></li>
-        <li class="@@boxedactive"><a href="#">Gerenciar Funcionários</a></li>
+        <li class="@@boxedactive"><a href="/pcaadmin/gerenciarturmas">Gerenciar Funcionários</a></li>
     </ul>
 </li>
 

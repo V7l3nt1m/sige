@@ -38,7 +38,7 @@ class Aluno extends Authenticatable
         'senha_aluno',
     ];
 
-    protected $dates = ['date'];
+    protected $dates = ['data_nasc'];
     protected $guarded = [];
 
     public function turma(){

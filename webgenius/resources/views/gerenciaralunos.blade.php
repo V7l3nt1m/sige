@@ -25,7 +25,7 @@
         <div class="card-body">
             <h2 class="titulo" align="center">Gerenciar Alunos</h2>
 <br>
-            <h3>Pesquise por Alunos na barra de pesquisa</h3>
+
 
     @if($search)
     <h3>Procurando por: {{$search}}</h3>
@@ -69,8 +69,14 @@
                     <td>{{$aluno->nome_curso}}</td>
                     <td>{{$aluno->nome_classe}}</td>
                     <td>
-                <button class="btn btn-light btn-sm" title="Actualizar informações do aluno" data-toggle="tooltip" data-placement="bottom"><i class="zmdi zmdi-refresh"></i></button>
-                <button class="btn btn-light btn-sm" title="Eliminar registro do aluno" data-toggle="tooltip" data-placement="bottom"><i class="zmdi zmdi-close"></i></button>
+                <div class="input-group">
+                    <a href="/pcaadmin/edit/{{$aluno->id}}" class="btn btn-light btn-sm" title="Actualizar informações do aluno" data-toggle="tooltip" data-placement="bottom"><i class="zmdi zmdi-refresh"></i></a>
+                    <form action="/pcaadmin/alunos/{{$aluno->id}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-light btn-sm" title="Eliminar registro do aluno" data-toggle="tooltip" data-placement="bottom"><i class="zmdi zmdi-close"></i></button>
+                    </form>
+                </div>
                     </td>
                 </tr>
             </tbody>
@@ -93,7 +99,7 @@
                 <h2>Pesquise alunos por filtro</h2>
             <div class="row">
                 <div class="col-md-3 col-sm-4">
-                    <select name="curso" id="" required class="form-select btn-dark">
+                    <select name="curso" id="" required class="select2" data-minimum-results-for-search="Infinity">
                         <option value="" selected disabled>Curso</option>
                             @foreach ($cursos as $curso)
                                     <option value="{{$curso->nome_curso}}">{{$curso->nome_curso}}</option>
@@ -101,7 +107,7 @@
                     </select>
                 </div>
                 <div class="col-md-3 col-sm-4">
-                    <select name="classe" id="" required class="form-select btn-dark">
+                    <select name="classe" id="" required class="select2" data-minimum-results-for-search="Infinity">
                         <option value="" selected disabled>Classe</option>
                      @foreach ($classes as $classe)
                         <option value="{{$classe->nome_classe}}">{{$classe->nome_classe}}</option>
@@ -109,7 +115,7 @@
                     </select>
                 </div>
                 <div class="col-md-3 col-sm-4">
-                    <select name="turma" id="" required class="form-select btn-dark">
+                    <select name="turma" id="" required class="select2" data-minimum-results-for-search="Infinity">
                         <option value="" selected disabled>Turma</option>
                         @foreach ($turmas as $turma)
                         <option value="{{$turma->nome_turma}}">{{$turma->nome_turma}}</option>
@@ -155,9 +161,15 @@
                                 <td>{{$aluno->email_aluno}}</td>
                                 <td>{{$aluno->telefone_aluno}}</td>
                                 <td>{{$aluno->genero}}</td>
-                               <td>
-                                    <button class="btn btn-light btn-sm" title="Actualizar informações do aluno" data-toggle="tooltip" data-placement="bottom"><i class="zmdi zmdi-refresh"></i></button>
-                                    <button class="btn btn-light btn-sm" title="Eliminar registro do aluno" data-toggle="tooltip" data-placement="bottom"><i class="zmdi zmdi-close"></i></button>
+                                <td>
+                                    <div class="input-group">
+                                        <a href="/pcaadmin/edit/{{$aluno->id}}" class="btn btn-light btn-sm" title="Actualizar informações do aluno" data-toggle="tooltip" data-placement="bottom"><i class="zmdi zmdi-refresh"></i></a>
+                                        <form action="/pcaadmin/alunos/{{$aluno->id}}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-light btn-sm" title="Eliminar registro do aluno" data-toggle="tooltip" data-placement="bottom"><i class="zmdi zmdi-close"></i></button>
+                                        </form>
+                                    </div>
                                         </td>
                             </tr>
                         </tbody>

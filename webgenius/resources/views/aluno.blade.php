@@ -6,7 +6,13 @@
 <div class="user__name">{{$nome_aluno}}</div>
 @endsection
 
+@section('img')
+<img class="user__img" src="/img/alunos/{{$imagem_aluno}}" alt="{{$imagem_aluno}}">
+@endsection
+
+
 @section('settings')
+<a class="dropdown-item" href="{{route('perfil')}}">Perfil</a>
 <a class="dropdown-item" href="{{route('settings')}}">Configurações</a>
 @endsection
 

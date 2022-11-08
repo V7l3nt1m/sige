@@ -6,6 +6,7 @@
 <div class="user__name">{{$user->name}}</div>
 @endsection
 
+
 @section('settings')
 <a class="dropdown-item" href="/professor/perfil">Ver Perfil</a>
 <a class="dropdown-item" href="/professor/definições">Configurações</a>
@@ -13,7 +14,7 @@
 
 @section('navbar')
 <li class="navigation__sub @@variantsactive">
-    <a href="#"><i class="zmdi zmdi-accounts"></i> Minhas turmas</a>
+    <li class="@@widgetactive"><a href="/professor/minhas_turmas"><i class="zmdi zmdi-accounts"></i> Minhas turmas</a></li>
     
     <li class="navigation__sub @@variantsactive">
         <a href="#"><i class="zmdi zmdi-assignment-check"></i> Lançar Notas</a>
@@ -70,7 +71,7 @@
                     <div class="card">
                         <div class="card-header h5">Foto de Perfil</div>
                         <div class="card-body">
-                            @foreach ($funcionarios as $funcionario)
+                           
                                 
                             
                             <img src="/img/funcionarios/{{$funcionario->imagem_fun}}" alt="$funcionario->imagem_fun" class="img-thumbnail rounded">
@@ -139,7 +140,6 @@
                 <div class="col-md-1"></div>
                 </div>
             -->
-            @endforeach
       
                 <br>
                 <br>

@@ -3,23 +3,34 @@
 @section('title', 'cadastro de funcionarios')
 
 @section('content')
+<main>
+  @if(session('msg'))
+    <h1 style="font-size: 18px;
+    background-color: #d4edda;
+    width: 100%;
+    border: 1px solid #c3e6cb;
+    text-align: center;
+    color: #155724;
+    font-style: italic;
+    margin-bottom: 0;
+    padding: 10px;">
+      {{session('msg')}}
+    </h1>
+    @elseif(session('erro'))
+    <h1 style="font-size: 18px;
+    background-color: red;
+    width: 100%;
+    border: 1px solid red;
+    text-align: center;
+    color: white;
+    font-style: italic;
+    margin-bottom: 0;
+    padding: 10px;">
+      {{session('erro')}}
+    </h1>
+@endif
 
-      <main>
-        @if(session('msg'))
-          <h1 style="font-size: 18px;
-          background-color: #d4edda;
-          width: 100%;
-          border: 1px solid #c3e6cb;
-          text-align: center;
-          color: #155724;
-          font-style: italic;
-          margin-bottom: 0;
-          padding: 10px;">
-            {{session('msg')}}
-          </h1>
-      @endif
-
-      </main>
+</main>
 
       <div class="card">
         <div class="card-body">
@@ -43,9 +54,14 @@
                     <br>
                     <div class="col-md-6 col-sm-12">
                       <div class="input-group">
-                        <span class="input-group-addon"><i class="zmdi zmdi-settings"></i></span>
                         <div class="form-group">
-                          <input type="text" class="form-control" id="input-field" placeholder="Função ou Departamento" name="funcao" required="required" onkeyup="validate();">
+                          <select class="select2" data-minimum-results-for-search="Infinity" name="funcao" required="required">
+                              <option value="" selected disabled>Função/Permissão</option>
+                              <option value="tesouraria">Tesouraria</option>
+                              <option value="secretaria">Secretaria</option>
+                              <option value="professor">Professor</option>
+                              <option value="pcaadmin">PCA Admin</option>
+                          </select>
                             <i class="form-group__bar"></i>
                         </div>
                                         </div>
@@ -136,7 +152,7 @@
         <div class="col-md-3">
           <div class="form-group">
             <div class="select">
-                <select class="form-select btn-dark" name="classe">
+                <select class="select2" data-minimum-results-for-search="Infinity" name="classe">
                     <option value="" selected disabled>Classe</option>
                     @foreach ($classes as $classe)
                         <option value="{{$classe->nome_classe}}">{{$classe->nome_classe}}</option>
@@ -148,7 +164,7 @@
         <div class="col-md-3">
           <div class="form-group">
             <div class="select">
-                <select class="form-select btn-dark" name="curso">
+                <select class="select2" data-minimum-results-for-search="Infinity" name="curso">
                     <option value="" selected disabled>Curso</option>
                     @foreach ($cursos as $curso)
                     <option value="{{$curso->nome_curso}}">{{$curso->nome_curso}}</option>
@@ -160,13 +176,23 @@
         <div class="col-md-3">
           <div class="form-group">
             <div class="select">
-                <select class="form-select btn-dark" name="turma">
+                <select class="select2" data-minimum-results-for-search="Infinity" name="turma">
                     <option value="" selected disabled>Turma</option>
                     @foreach ($turmas as $turma)
                     <option value="{{$turma->nome_turma}}">{{$turma->nome_turma}}</option>
                 @endforeach
                 </select>
             </div>
+              </div>
+        </div>
+        <div class="col-md-3">
+          <div class="form-group">
+                <select class="select2" data-minimum-results-for-search="Infinity" name="disciplina">
+                    <option value="" selected disabled>Disciplina</option>
+                    @foreach ($disciplinas as $disciplina)
+                    <option value="{{$disciplina->nome_disc}}">{{$disciplina->nome_disc}}</option>
+                @endforeach
+                </select>
               </div>
         </div>
       </div>
@@ -222,6 +248,12 @@
   element.value = element.value.replace(/[^a-zA-Zà-úÀ-Úã-õÃ-Õ ]+/, '');
   };
   </script>
+  <script> 
+    function validate2() {
+    var element = document.getElementById('input-field2');
+  element.value = element.value.replace(/[^a-zA-Zà-úÀ-Úã-õÃ-Õ]+/, '');
+    };
+    </script>
   
   <script>
    function isImagem(i){
@@ -237,5 +269,4 @@
   }
   
   </script>
-
 @endsection

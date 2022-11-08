@@ -11,14 +11,21 @@
 <a class="dropdown-item" href="{{route('settings')}}">Configurações</a>
 @endsection
 
+
 @section('navbar')
 <li class="navigation__sub @@variantsactive">
   <a href=""><i class="zmdi zmdi-graduation-cap">
     </i> Informações</a>
 
-    <ul>.
+    <ul>
+          <li class="@@sidebaractive"><a href="#">Notas</a></li>
+          <li class="@@boxedactive"><a href="#">Finanças</a></li>
+      </ul>
   </li>
-  
+
+
+@endsection
+
 
   @section('content')
   <main>
@@ -34,8 +41,20 @@
       padding: 10px;">
         {{session('msg')}}
       </h1>
+      @elseif(session('erro'))
+      <h1 style="font-size: 18px;
+      background-color: red;
+      width: 100%;
+      border: 1px solid red;
+      text-align: center;
+      color: white;
+      font-style: italic;
+      margin-bottom: 0;
+      padding: 10px;">
+        {{session('erro')}}
+      </h1>
   @endif
-
+  
   </main>
 
 <header class="content__title">
@@ -85,7 +104,7 @@
 
 @endsection
 
-@endsection
+
 
  
 

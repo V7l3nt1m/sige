@@ -31,7 +31,8 @@ class AlunoController extends Controller
             foreach ($query as $aluno) {
                 foreach ($query2 as $aluno2) {
                     $nome_aluno = $aluno2->nome_aluno;
-                    return view('aluno', ['user' => $user, 'aluno' => $aluno, 'nome_aluno' => $nome_aluno]);                }
+                    $imagem_aluno = $aluno->imagem_aluno;
+                    return view('aluno', ['user' => $user, 'aluno' => $aluno, 'nome_aluno' => $nome_aluno, 'imagem_aluno' => $imagem_aluno]);                }
                
             }
         }   
@@ -52,7 +53,7 @@ class AlunoController extends Controller
         ->get();
         foreach ($query as $aluno) {
             foreach ($query2 as $aluno2) {
-
+                $imagem_aluno = $aluno->imagem_aluno;
                 $outrosdados = DB::table('alunos')
                 ->select('turmas.nome_turma', 'classes.nome_classe', 'cursos.nome_curso')
                 ->join('turmas', 'turmas.id', 'alunos.turma_id')
@@ -63,7 +64,7 @@ class AlunoController extends Controller
                
                 foreach ($outrosdados as $dados) {
                     $nome_aluno = $aluno2->nome_aluno;
-                    return view('ver_perfil', ['user' => $user, 'aluno' => $aluno, 'rota' => $rota, 'nome_aluno' => $nome_aluno, 'dados' => $dados]);                }
+                    return view('ver_perfil', ['user' => $user, 'aluno' => $aluno, 'rota' => $rota, 'nome_aluno' => $nome_aluno, 'dados' => $dados, 'imagem_aluno' => $imagem_aluno]);                }
                 }
               
            
@@ -85,9 +86,10 @@ class AlunoController extends Controller
         ->get();
         foreach ($query as $aluno) {
             foreach ($query2 as $aluno2) {
+                $imagem_aluno = $aluno->imagem_aluno;
                 $nome_aluno = $aluno2->nome_aluno;
             
-                return view('definições', ['user' => $user, 'aluno' => $aluno, 'rota' => $rota, 'nome_aluno' => $nome_aluno]);                
+                return view('definições', ['user' => $user, 'aluno' => $aluno, 'rota' => $rota, 'nome_aluno' => $nome_aluno, 'imagem_aluno' => $imagem_aluno]);                
 
             }
         }
@@ -114,9 +116,9 @@ class AlunoController extends Controller
                     return redirect('/alunos/definições')->with('msg', 'Senha alterada com sucesso!'); 
                 }
                 elseif(strcasecmp($senha1, $senha2) != 0){
-                    return redirect('/alunos/definições')->with('msg', 'As senhas não coincidem');
+                    return redirect('/alunos/definições')->with('erro', 'As senhas não coincidem');
                 }elseif(Hash::check($senha1, $q2->senha_aluno)){
-                    return redirect('/alunos/definições')->with('msg', 'A senha já existe');
+                    return redirect('/alunos/definições')->with('erro', 'A senha já existe');
                 } 
                   
             }

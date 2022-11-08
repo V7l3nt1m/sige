@@ -13,7 +13,7 @@
 
 @section('navbar')
 <li class="navigation__sub @@variantsactive">
-    <a href="#"><i class="zmdi zmdi-accounts"></i> Minhas turmas</a>
+    <a href="/professor/minhas_turmas"><i class="zmdi zmdi-accounts"></i> Minhas turmas</a>
     
     <li class="navigation__sub @@variantsactive">
         <a href="#"><i class="zmdi zmdi-assignment-check"></i> Lançar Notas</a>

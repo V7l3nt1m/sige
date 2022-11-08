@@ -113,7 +113,7 @@
         @method('POST')
         <div class="row">
             <div class="col-md-3">
-                <select name="nome_turma" id="" class="form-select btn-dark">
+                <select name="nome_turma" id="" class="select2" data-minimum-results-for-search="Infinity">
                     <option value="" selected disabled>Turmas</option>
                 @foreach ($turmas as $turma)
                 <option value="{{$turma->nome_turma}}">{{$turma->nome_turma}}</option>
@@ -121,7 +121,7 @@
                 </select>
             </div>
             <div class="col-md-3">
-                <select name="nome_classe" id="" class="form-select btn-dark">
+                <select name="nome_classe" id="" class="select2" data-minimum-results-for-search="Infinity">
                     <option value="" selected disabled>Classe</option>
                         @foreach($classes as $classe)
                               <option value="{{$classe->nome_classe}}">{{$classe->nome_classe}}</option>
@@ -129,7 +129,7 @@
                    </select>
             </div>
                <div class="col-md-3">
-                   <select name="nome_curso" id="" class="form-select btn-dark">
+                   <select name="nome_curso" id="" class="select2" data-minimum-results-for-search="Infinity">
                     <option value="" selected disabled>Curso</option>
                         @foreach($cursos as $curso)
                               <option value="{{$curso->nome_curso}}">{{$curso->nome_curso}}</option>

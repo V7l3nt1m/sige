@@ -7,7 +7,8 @@
 @endsection
 
 @section('settings')
-<a class="dropdown-item" href="{{route('defi_admin')}}">Configurações</a>
+<a class="dropdown-item" href="{{route('perfil')}}">Perfil</a>
+<a class="dropdown-item" href="/alunos/definições">Configurações</a>
 @endsection
 
 @section('navbar')

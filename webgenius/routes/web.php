@@ -7,6 +7,7 @@ use App\Http\Controllers\PCAController;
 use App\Http\Controllers\SecretariaController;
 use App\Http\Controllers\TesourariaController;
 use App\Http\Controllers\ProfessorController;
+use App\Http\Controllers\SigeController;
 
 
 
@@ -31,6 +32,7 @@ Route::get('/aluno', [AlunoController::class, 'index'])->middleware('auth')->mid
 Route::get('/pcaadmin', [PCAController::class, 'index'])->name('pcaadmin')->middleware('auth');
 Route::get('/login_aluno', [AlunoController::class, 'login'])->name('login_aluno');
 Route::post('/aluno', [AlunoController::class, 'login_aluno']);
+Route::get('/sige', [SigeController::class, 'index'])->middleware('auth');
 
 //acess denied
 Route::get('/acessdenied', [EventController::class, 'acessdenied'])->middleware('auth');
@@ -48,12 +50,20 @@ Route::put('/professor/{id}', [ProfessorController::class, 'update_professor'])-
 Route::get('/pcaadmin/cadasaluno', [PCAController::class, 'cadasaluno'])->middleware('auth')->name('cadasaluno')->middleware('denied');
 Route::post('/pcaadmin/cadasaluno', [PCAController::class, 'store_alunos'])->middleware('auth')->middleware('denied');
 Route::get('/pcaadmin/alunos', [PCAController::class, 'gerenciaralunos'])->middleware('auth')->middleware('denied')->name('gerenciaralunos');
+Route::delete('/pcaadmin/alunos/{id}', [PCAController::class, 'destroy_alunos'])->middleware('auth')->middleware('denied');
 
+Route::get('/pcaadmin/edit/{id}', [PCAController::class, 'edit_alunos'])->middleware('auth')->middleware('denied');
+Route::put('/pcaadmin/update_aluno/{id}', [PCAController::class, 'update_alunos'])->middleware('auth')->middleware('denied');
 
 //rotas pcafuncionario
 Route::get('/pcaadmin/funcionarios', [PCAController::class, 'cadafuncionario'])->middleware('auth')->name('funcionario')->middleware('denied');
 Route::post('/pcaadmin/funcionarios', [PCAController::class, 'store_funcionarios'])->middleware('auth')->middleware('denied');
 Route::get('/pcaadmin/gerenfuncionarios', [PCAController::class, 'gerenciarfuncio'])->middleware('auth')->middleware('denied')->name('gerenciarfuncionarios');
+Route::get('/pcaadmin/adicionarturma/{id}', [PCAController::class, 'adicionarturma'])->middleware('auth')->middleware('denied');
+Route::post('/pcaadmin/adicionar/{id}', [PCAController::class, 'adicionarturma_post'])->middleware('auth')->middleware('denied');
+Route::delete('/pcaadmin/gerenfuncionarios/{id}', [PCAController::class, 'destroy_funcionarios'])->middleware('auth')->middleware('denied');
+Route::get('/pcaadmin/edit/{id}', [PCAController::class, 'edit_func'])->middleware('auth')->middleware('denied');
+Route::put('/pcaadmin/update/{id}', [PCAController::class, 'update_func'])->middleware('auth')->middleware('denied');
 
 //rota permissoes
 Route::get('/pcaadmin/permissoes', [PCAController::class, 'permissoes'])->middleware('auth')->name('permissoes')->middleware('denied');
@@ -63,6 +73,7 @@ Route::PUT('/pcaadmin', [PCAController::class, 'store_funcionarios'])->middlewar
 //rotas turmas
 Route::get('/pcaadmin/turmas', [PCAController::class, 'turmas'])->middleware('auth')->name('turmas')->middleware('denied');
 Route::post('/pcaadmin/turmas', [PCAController::class, 'cadaturmas'])->middleware('auth')->middleware('denied');
+
 Route::get('/pcaadmin/gerenciarturmas', [PCAController::class, 'gerenciarturmas'])->middleware('auth')->name('gerenciarturmas')->middleware('denied');
 Route::post('/pcaadmin/gerenciarturmas', [PCAController::class, 'associar_turmas'])->middleware('auth')->middleware('denied');
 
@@ -83,10 +94,11 @@ Route::post('/pcaadmin/classes', [PCAController::class, 'cadaclasses'])->middlew
 //rotas definicao
 Route::get('/pcaadmin/definições', [PCAController::class, 'defi_admin'])->middleware('auth')->name('definicao')->middleware('denied');
 Route::put('/pcaadmin/definições/{id}', [PCAController::class, 'updateinfo'])->middleware('auth')->middleware('denied');
+Route::get('/pcaadmin/perfil', [PCAController::class, 'perfil2'])->middleware('auth')->name('ver_perfil2')->middleware('denied');;
+
 
 //rota perfil e definições
 Route::get('/alunos/perfil', [AlunoController::class, 'perfil'])->middleware('auth')->name('perfil');
-Route::get('/pcaadmin/perfil', [PCAController::class, 'perfil2'])->middleware('auth')->name('ver_perfil2')->middleware('denied');;
 Route::get('/alunos/definições', [AlunoController::class, 'settings'])->middleware('auth')->name('settings');
 
 
@@ -101,7 +113,19 @@ Route::get('/professor/definições', [ProfessorController::class, 'settings_pro
 Route::get('/professor/perfil', [ProfessorController::class, 'perfil_professor'])->middleware('auth');
 Route::get('/professor/minhas_turmas', [ProfessorController::class, 'minhas_turmas'])->middleware('auth');
 Route::put('/professor/definições/{id}', [ProfessorController::class, 'update_professor'])->middleware('auth');
+Route::get('/professor/minhas_turmas', [ProfessorController::class, 'minhas_turmas'])->middleware('auth');
 
+
+//Escolas
+Route::get('/sige/cadasescolas', [SigeController::class, 'cadasescolas'])->middleware('auth');
+Route::get('/sige/listaescolas', [SigeController::class, 'lista_escolas'])->middleware('auth');
+Route::post('/sige/cadasescolas', [SigeController::class, 'store'])->middleware('auth');
+Route::delete('/sige/listaescolas/{id}', [SigeController::class, 'destroy_escola'])->middleware('auth');
+Route::get('/sige/edit_escola/{id}', [SigeController::class, 'edit_escola'])->middleware('auth');
+Route::put('/sige/update/{id}',[SigeController::class, 'update_escolas'])->middleware('auth');
+
+Route::get('/sige/definições', [SigeController::class, 'settings_sige'])->middleware('auth');
+Route::put('/sige/definições/{id}', [SigeController::class, 'update_sige'])->middleware('auth');
 
 
 Route::middleware([
@@ -114,16 +138,18 @@ Route::middleware([
         $permissao = $usuario->permissao;
     
         if ( (strcasecmp($permissao, "tesouraria")) == 0) {
-            return redirect('/tesouraria');
+            return redirect('/tesouraria/perfil');
         }elseif ( (strcasecmp($permissao, "secretaria")) == 0) {
-            return redirect('/secretaria');
+            return redirect('/secretaria/perfil');
         }elseif ( (strcasecmp($permissao, "professor")) == 0) {
-            return redirect('/professor');
+            return redirect('/professor/perfil');
         }elseif ( (strcasecmp($permissao, "Aluno")) == 0) {
-            return redirect('/aluno');
+            return redirect('/alunos/perfil');
         }
         elseif ( (strcasecmp($permissao, "pcaadmin")) == 0) {
-            return redirect('/pcaadmin');
+            return redirect('/pcaadmin/perfil');
+        } elseif ( (strcasecmp($permissao, "sige")) == 0) {
+            return redirect('/sige');
         }
         
     })->middleware('auth');

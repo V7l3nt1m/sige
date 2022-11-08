@@ -22,7 +22,8 @@ class ProfessorController extends Controller
             ->where('user_id', $user->id)
             ->get();
             foreach ($query as $funcionario) {
-            return view('professor', ['user' => $user, 'funcionario' => $funcionario]);
+                $imagem_fun = $funcionario->imagem_fun;
+            return view('professor', ['user' => $user, 'funcionario' => $funcionario, 'imagem_fun' => $imagem_fun]);
         }
         }
         else{
@@ -38,7 +39,9 @@ public function perfil_professor(){
         ->where('funcionarios.user_id', $user->id)
         ->get();
 
-            return view('ver_perfil_professor', ['user' => $user, 'funcionarios' => $funcionarios]);   
+        foreach ($funcionarios as $funcionario){
+            return view('ver_perfil_professor', ['user' => $user, 'funcionario' => $funcionario]);   
+        }
 
         
           
@@ -74,24 +77,78 @@ public function update_professor(Request $request){
        foreach ($query2 as $q2) {
             if(strcasecmp($senha1, $senha2) == 0 && ! Hash::check($senha1, $q2->senha_func)){
                 $senha = Hash::make($senha1);
-                Funcionario::where('user_id', $request->id)
-                ->update(['senha_func' => $senha],
-                ['nome' => $nome_user])
-                ;
+               
+                
+               User::where('id', $q2->user_id)
+                ->update(['name' => $nome_user]);
+                         
                 User::where('id', $q2->user_id)
-                ->update(['password' => $senha],
-            ['name', $nome_user]);
+                         ->update(['password' => $senha]);
+
+                 Funcionario::where('user_id', $request->id)
+                ->update(['nome' => $nome_user]);
+
+                 Funcionario::where('user_id', $request->id)
+                ->update(['senha_func' => $senha]);
+
+                
+                                  
                 
                 return redirect('/professor/definições')->with('msg', 'Senha alterada com sucesso!'); 
             }
             elseif(strcasecmp($senha1, $senha2) != 0){
-                return redirect('/professor/definições')->with('msg', 'As senhas não coincidem');
+                return redirect('/professor/definições')->with('erro', 'As senhas não coincidem');
             }elseif(Hash::check($senha1, $q2->senha_func)){
-                return redirect('/professor/definições')->with('msg', 'A senha já existe');
-            } 
-              
+                return redirect('/professor/definições')->with('erro', 'A senha já existe');
+            }
+            
         }
 
    
+}
+
+public function minhas_turmas(){
+    $user = auth()->user();
+    
+    
+
+    $query = DB::table('funcionarios')
+    ->select('turmas.nome_turma')
+    ->join('funcionario_turma', 'funcionarios.id', '=', 'funcionario_turma.funcionario_id')
+    ->join('turmas', 'turmas.id', 'funcionario_turma.turma_id')
+    ->where('funcionarios.user_id', $user->id)
+    ->get();
+
+    $query2 = DB::table('funcionarios')
+    ->select('cursos.nome_curso')
+    ->join('curso_funcionario', 'funcionarios.id', '=', 'curso_funcionario.funcionario_id')
+    ->join('cursos', 'cursos.id', 'curso_funcionario.curso_id')
+    ->where('funcionarios.user_id', $user->id)
+    ->get();
+
+    $query3 = DB::table('funcionarios')
+    ->select('classes.nome_classe')
+    ->join('classe_funcionario', 'funcionarios.id', '=', 'classe_funcionario.funcionario_id')
+    ->join('classes', 'classes.id', 'classe_funcionario.classe_id')
+    ->where('funcionarios.user_id', $user->id)
+    ->get();
+
+    $funcionarios = DB::table('users')
+    ->join('funcionarios', 'users.id', 'funcionarios.user_id')
+    ->where('funcionarios.user_id', $user->id)
+    ->get();
+
+    foreach ($funcionarios as $funcionario) {
+            
+                $imagem_fun = $funcionario->imagem_fun;
+                return view('minhas_turmas', ['user'=> $user, 'query' => $query, 'query2' => $query2,'query3' => $query3, 'imagem_fun' => $imagem_fun]);
+            
+        
+    }
+    
+
+   
+
+
 }
 }

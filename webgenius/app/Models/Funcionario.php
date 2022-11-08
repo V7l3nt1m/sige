@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Funcionario extends Model
 {
-    protected $dates = ['date'];
+    protected $dates = ['data_nasc'];
     protected $guarded = [];
     protected $fillable = [
         'nome',
@@ -40,4 +40,9 @@ public function cursos(){
 public function classes(){
     return $this->belongsToMany('App\Models\Classe');
 }
+
+public function disciplinas(){
+    return $this->BelongsToMany('App\Models\Disciplina');
+}
+
 }
