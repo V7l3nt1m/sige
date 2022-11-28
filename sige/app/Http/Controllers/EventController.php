@@ -27,4 +27,13 @@ class EventController extends Controller
     }
 
 
+//background-color
+public function background_color(Request $request){
+    $user = auth()->user();
+    $color_value = $request->cor;
+    $r = $request->headers->get('referer');
+    $pagina = substr($r, 22);
+    User::where('id', $request->id)->update(['background_color' => $color_value]);
+    return redirect()->back();
+}
 }

@@ -112,7 +112,7 @@
             </div>
             <div class="row">
               <div class="col-md-4 col-sm-12">
-                <input type="file" name="image" class="btn btn-light" accept="image/*" 
+                <input type="file" name="image" class="form-control" accept="image/*" 
                 onchange="updatePreview(this, 'image-preview')" onchange="isImagem(this)">
                 <br>
                </div>

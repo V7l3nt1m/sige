@@ -1,11 +1,43 @@
 .session_msg{
-    font-size: 18px;
-    background-color: #d4edda;
-    width: 100%;
-    border: 1px solid #c3e6cb;
-    text-align: center;
-    color: #155724;
-    font-style: italic;
-    margin-bottom: 0;
-    padding: 10px;
+  font-size: 18px;
+  background-color: #d4edda;
+  width: 100%;
+  border: 1px solid #c3e6cb;
+  text-align: center;
+  color: #155724;
+  font-style: italic;
+  margin-bottom: 0;
+  padding: 10px;
 }
+
+@media (min-width: 320px){
+  #img_logo_escola{
+      width: 60px;
+  }
+}
+@media (min-width:481px){
+  #img_logo_escola{
+    width: 60px;
+}
+}
+@media (min-width:641px){
+  #img_logo_escola{
+    width: 60px;
+}
+}
+@media (min-width:961px){
+  #img_logo_escola{
+    width: 60px;
+}
+}
+@media (min-width:1025px){
+  #img_logo_escola{
+    width: 60px;
+}
+}
+@media (min-width:1281px){
+  #img_logo_escola{
+    width: 70px;
+}
+}
+

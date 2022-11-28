@@ -30,19 +30,19 @@ class Funcionario extends Model
 
 
 public function turmas(){
-    return $this->belongsToMany('App\Models\Turma', 'classe_curso_funcionario_turma');
+    return $this->belongsToMany('App\Models\Turma', 'classe_curso_disciplina_funcionario_turma');
 }
 
 public function cursos(){
-    return $this->belongsToMany('App\Models\Curso', 'classe_curso_funcionario_turma');
+    return $this->belongsToMany('App\Models\Curso', 'classe_curso_disciplina_funcionario_turma');
 }
 
 public function classes(){
-    return $this->belongsToMany('App\Models\Classe', 'classe_curso_funcionario_turma');
+    return $this->belongsToMany('App\Models\Classe', 'classe_curso_disciplina_funcionario_turma');
 }
 
 public function disciplinas(){
-    return $this->BelongsToMany('App\Models\Disciplina');
+    return $this->BelongsToMany('App\Models\Disciplina', 'classe_curso_disciplina_funcionario_turma');
 }
 
 }

@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Console;
-
+use App\Console\Commands\AprovarAlunos;
+use App\Models\Aluno;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -13,10 +14,14 @@ class Kernel extends ConsoleKernel
      * @param  \Illuminate\Console\Scheduling\Schedule  $schedule
      * @return void
      */
+
+     protected $commands = [
+        Commands\AprovarAlunos::class,
+     ];
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
-    }
+            $schedule->command('command:ActualizarClassesAlunos')->everyMinute();
+        }
 
     /**
      * Register the commands for the application.

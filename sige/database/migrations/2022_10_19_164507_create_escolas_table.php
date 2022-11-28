@@ -15,16 +15,16 @@ return new class extends Migration
     {
         Schema::create('escolas', function (Blueprint $table) {
             $table->id();
-            $table->string('nome_escola');
-            $table->string('n_registro')->nullable();
+            $table->string('nome_escola')->unique();
+            $table->string('n_registro')->nullable()->unique();
             $table->string('contrato');
             $table->string('pacote');
-            $table->string('n_bi');
+            $table->string('n_bi')->unique();
             $table->string('email');
             $table->double('valor_p_aluno');
             $table->string('telefone');
             $table->string('cidade')->nullable();
-            $table->string('Municipio/Bairro/Escola')->nullable();
+            $table->string('outra_localizacao')->nullable();
             $table->string('logo_escola')->nullable();
             $table->timestamps();
         });

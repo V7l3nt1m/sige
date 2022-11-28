@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('turmas', function (Blueprint $table) {
             $table->id();
-            $table->string('nome_turma');
+            $table->string('nome_turma')->unique();
             $table->timestamps();
         });
     }

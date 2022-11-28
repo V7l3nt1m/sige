@@ -26,4 +26,8 @@ class Disciplina extends Model
         return $this->belongsToMany('App\Models\Funcionario');
     }
 
+    public function cursosFuncionariosTurmas(){
+        return $this->BelongsToMany('App\Models\Curso', 'App\Models\Funcionario', 'App\Models\Turma', 'App\Models\Disciplina');
+    }
+
 }

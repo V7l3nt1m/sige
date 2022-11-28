@@ -120,7 +120,7 @@
               <br>
               <div class="input-group">
                 <div class="form-group">
-                  <input type="file" name="image" class="btn btn-light" accept="image/*"
+                  <input type="file" name="image" class="form-control" accept="image/*"
                   onchange="updatePreview(this, 'image-preview')" onchange="isImagem(this)"  title="Faça o upload de uma fotografia meio corpo" data-toggle="tooltip" data-placement="top" >
                     <br>
                 </div>

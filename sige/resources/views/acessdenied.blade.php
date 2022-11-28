@@ -19,7 +19,7 @@
                 <h1>404</h1>
                 <h2>A página que tentou acessar não existe ou não possui permissão.</h2>
                 <p>Por favor, contacte o seu administrador para reportar o erro!</p>
-                <a class="btn btn-dark btn--icon-text" href="/"><i class="zmdi zmdi-home"></i>Voltar</a>
+                <a class="btn btn-dark btn--icon-text" href="/"><i class="zmdi zmdi-home"></i>SIGE</a>
             </div>
         </section>
 

@@ -4,7 +4,7 @@
 <!--Designed By ALpha-->
 <head>
         <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>PCA</title>
 
         <!-- Vendor styles -->
@@ -18,9 +18,12 @@
 
         <!-- App styles -->
         <link rel="stylesheet" href="/template/css/app.min.css">
+        <link rel="stylesheet" href="/template/style.css">
+        <link rel="stylesheet" href="/template/modal.css">
+
     </head>
 
-    <body data-sa-theme="1">
+    <body data-sa-theme="{{$user->background_color}}">
         <main class="main">
             <div class="page-loader">
                 <div class="page-loader__spinner">
@@ -111,35 +114,78 @@
 
                     
 
-                    <li class="dropdown hidden-xs-down">
+                    <li class="dropdown">
                         <a href="#" data-toggle="dropdown"><i class="zmdi zmdi-more-vert"></i></a>
 
                         <div class="dropdown-menu dropdown-menu-right">
                             <div class="dropdown-item theme-switch">
                                 Alterar Cor do Tema
-
+                                <form action="/cor/{{$user->id}}" method="post">
+                                    @csrf
+                                    @method('PUT')
                                 <div class="btn-group btn-group--colors mt-2 d-block" data-toggle="buttons">
-                                    <label class="btn active border-0" style="background-color: #772036"><input type="radio" value="1" autocomplete="off"></label>
-                                    <label class="btn border-0" style="background-color: #273C5B"><input type="radio" value="2" autocomplete="off"></label>
-                                    <label class="btn border-0" style="background-color: #174042"><input type="radio" value="3" autocomplete="off" checked></label>
-                                    <label class="btn border-0" style="background-color: #383844"><input type="radio" value="4" autocomplete="off"></label>
-                                    <label class="btn border-0" style="background-color: #49423F"><input type="radio" value="5" autocomplete="off"></label>
-
+                                    @if($user->background_color == 1)
+                                    <label class="btn active border-0" style="background-color: #772036;"><input type="radio" name="cor" value="1" autocomplete="off"></label>
+                                    @else
+                                    <label class="btn border-0" style="background-color: #772036;"><input type="radio" name="cor" value="1" autocomplete="off"></label>
+                                    @endif
+                                    @if($user->background_color == 2)
+                                    <label class="btn active border-0" style="background-color: #273C5B"><input type="radio" name="cor" value="2" autocomplete="off"></label>
+                                    @else
+                                    <label class="btn border-0" style="background-color: #273C5B"><input type="radio" name="cor" value="2" autocomplete="off"></label>
+                                    @endif
+                                    @if($user->background_color == 3)
+                                    <label class="btn active border-0" style="background-color: #174042"><input type="radio" name="cor" value="3" autocomplete="off"></label>
+                                    @else
+                                    <label class="btn border-0" style="background-color: #174042"><input type="radio" name="cor" value="3" autocomplete="off"></label>
+                                    @endif
+                                    @if($user->background_color == 4)
+                                    <label class="btn active border-0" style="background-color: #383844"><input type="radio" name="cor" value="4" autocomplete="off"></label>
+                                    @else
+                                    <label class="btn border-0" style="background-color: #383844"><input type="radio" name="cor" value="4" autocomplete="off"></label>
+                                    @endif
+                                    @if($user->background_color == 5)
+                                    <label class="btn active border-0" style="background-color: #49423F"><input type="radio" name="cor" value="5" autocomplete="off"></label>
+                                    @else
+                                    <label class="btn border-0" style="background-color: #49423F"><input type="radio" name="cor" value="5" autocomplete="off"></label>
+                                    @endif
                                     <br>
-
-                                    <label class="btn border-0" style="background-color: #5e3d22"><input type="radio" value="6" autocomplete="off"></label>
-                                    <label class="btn border-0" style="background-color: #234d6d"><input type="radio" value="7" autocomplete="off"></label>
-                                    <label class="btn border-0" style="background-color: #3b5e5e"><input type="radio" value="8" autocomplete="off"></label>
-                                    <label class="btn border-0" style="background-color: #0a4c3e"><input type="radio" value="9" autocomplete="off"></label>
-                                    <label class="btn border-0" style="background-color: #7b3d54"><input type="radio" value="10" autocomplete="off"></label>
+                                    @if($user->background_color == 6)
+                                    <label class="btn active border-0" style="background-color: #5e3d22"><input type="radio" name="cor" value="6" autocomplete="off"></label>
+                                    @else
+                                    <label class="btn border-0" style="background-color: #5e3d22"><input type="radio" name="cor" value="6" autocomplete="off"></label>
+                                    @endif
+                                    @if($user->background_color == 7)
+                                    <label class="btn active border-0" style="background-color: #234d6d"><input type="radio" name="cor" value="7" autocomplete="off"></label>
+                                    @else
+                                    <label class="btn border-0" style="background-color: #234d6d"><input type="radio" name="cor" value="7" autocomplete="off"></label>
+                                    @endif
+                                    @if($user->background_color == 8)
+                                    <label class="btn active border-0" style="background-color: #3b5e5e"><input type="radio" name="cor" value="8" autocomplete="off"></label>
+                                    @else
+                                    <label class="btn border-0" style="background-color: #3b5e5e"><input type="radio" name="cor" value="8" autocomplete="off"></label>
+                                    @endif
+                                    @if($user->background_color == 9)
+                                    <label class="btn active border-0" style="background-color: #0a4c3e"><input type="radio" name="cor" value="9" autocomplete="off"></label>
+                                    @else
+                                    <label class="btn border-0" style="background-color: #0a4c3e"><input type="radio" name="cor" value="9" autocomplete="off"></label>
+                                    @endif
+                                    @if($user->background_color == 10)
+                                    <label class="btn active border-0" style="background-color: #7b3d54"><input type="radio" name="cor" value="10" autocomplete="off"></label>
+                                    @else
+                                    <label class="btn border-0" style="background-color: #7b3d54"><input type="radio" name="cor" value="10" autocomplete="off"></label>
+                                    @endif
+                                    <br>
                                 </div>
+                                <button type="submit" class="btn btn-light btn--icon" data-toggle="tooltip" data-placement="top" title="Guardar a cor de fundo"><i class="zmdi zmdi-check"></i></button>
+                            </form>
                             </div>
                             
                         </div>
                     </li>
                 </ul>
 
-                <div class="clock hidden-md-down">
+                <div class="clock hidden-sm-down">
                     <div class="time">
                         <span class="hours"></span>
                         <span class="min"></span>
@@ -153,7 +199,9 @@
 
                     <div class="user">
                         <div class="user__info" data-toggle="dropdown">
-                            @if(isset($imagem_fun) == 1)
+                            @if(isset($imagem_fun) == 1 && str_contains($user->name, "admin"))
+                            <img class="user__img" src="/img/escolas/{{$imagem_fun}}" alt="{{$imagem_fun}}">
+                            @elseif(isset($imagem_fun) == 1)
                             <img class="user__img" src="/img/funcionarios/{{$imagem_fun}}" alt="{{$imagem_fun}}">
                             @elseif(isset($imagem_aluno) == 1)
                             <img class="user__img" src="/img/alunos/{{$imagem_aluno}}" alt="{{$imagem_aluno}}">
@@ -161,6 +209,7 @@
                             <div>
                                 <div class="user__name">{{$user->name}}</div>
                                 <div class="user__email">{{$user->permissao}}</div>
+                                <div class="user__email">{{$user->nome_escola}}</div>
                             </div>
                         </div>
 
@@ -177,7 +226,7 @@
                     </div>
 
                     <ul class="navigation">
-
+                        <li class="@@widgetactive"><a href="/pcaadmin"><i class="zmdi zmdi-home"></i></i> Inicio</a></li>
                         <li class="navigation__sub @@variantsactive">
                             <a href="#"><i class="zmdi zmdi-settings"></i> Serviços</a>
 
@@ -238,11 +287,11 @@
 
                         <li class="@@widgetactive"><a href="widgets.html"><i class="zmdi zmdi-account"></i> Livros de Ponto</a></li>
 
-                       
-
-
-
-                       
+                        @if(strcasecmp($user->permissao, "sige") > 0)
+                            <li class="@@widgetactive"><img src="/img/escolas/{{$logo_escola->logo_escola}}" alt="Logo da escola"  width="100px" style="margin: auto; display:block;"></li>
+                            @else
+                            <li class="@@widgetactive"><img src="/img/escolas/{{$logo_escola->logo_escola}}" alt="Logo da escola"  width="100px" style="margin: auto; display:block;"></li>
+                            @endif
                            
                     </ul>
                 </div>
@@ -250,12 +299,7 @@
 
             <section class="content">
                 <header class="content__title">
-                    @if($rota == 'pcaadmin')
-                    <h1>Dashboard</h1>
-
-                    @else
-                    <h1>Dashboard > {{$rota}}</h1>
-                    @endif
+                    
 
                 </header>
 
@@ -264,11 +308,21 @@
 
                     
                    
-
+                
                 @yield('content')
+                @if(str_contains($rota, "pcaadmin") == 1)
+                <div style="display: block; padding-top: 130px; opacity: calc(10%);">
+                    <h1 style="text-align: center; font-size: 80px">
+                      SIGE
+                    </h1>
+                    <br>
+                    <h2 style="text-align: center; font-size: 60px">Sistema Integrado de Gestão Escolar</h2>
+                    <img src="/assets/img/ministerio.png" alt="ministerio da educacao" style="width: 100px; display:block; margin: auto;">
+                  </div>
+                  @endif
 
 
-                <footer class="footer hidden-xs-down">
+                <footer class="footer">
                     <p>© SIGE. All rights reserved.</p>
 
                  

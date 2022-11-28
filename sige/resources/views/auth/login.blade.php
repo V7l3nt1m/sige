@@ -41,6 +41,7 @@
                                                  <a href="/"><span class="logo-txt">SIGE</span></a>
                                             </span>
                                         </a>
+                                        <a href="https://med.gov.ao/ao/"><img src="/assets/img/ministerio.png" alt="ministerio da educacao" style="width: 100px; display:block; margin: auto;"></a>
                                         <p class="text-muted font-size-15 w-75 mx-auto mt-3 mb-0">Sistema Integrado de Gestão Escolar</p>
                                     </div>
                                 </div>
@@ -83,7 +84,7 @@
                                                   @csrf
                                                     <div class="form-floating form-floating-custom mb-3">
                                                       <x-jet-input id="input-username" class="form-control" placeholder="Nome" type="text" name="name" :value="old('name')" required autofocus />
-                                                       <x-jet-label for="input-username" value="{{ __('Nome ou ID de usuário') }}" />
+                                                       <x-jet-label for="input-username" value="{{ __('ID de usuário') }}" />
                                                         <div class="form-floating-icon">
                                                             <i class="bx bxs-user-check"></i>
                                                         </div>

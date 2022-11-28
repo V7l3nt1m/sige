@@ -7,6 +7,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 
+
 class SigeSeeder extends Seeder
 {
     /**
@@ -22,6 +23,8 @@ class SigeSeeder extends Seeder
                 'email' => Str::random(10).'@gmail.com',
                 'password' => Hash::make('sige'),
                 'permissao' => 'SIGE',
+                'nome_escola' => 'NULL',
+                'n_bi' => 'sige',
             ]
         );
     }

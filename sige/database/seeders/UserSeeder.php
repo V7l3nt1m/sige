@@ -21,7 +21,9 @@ class UserSeeder extends Seeder
                 'name' => "admin",
                 'email' => Str::random(10).'@gmail.com',
                 'password' => Hash::make('password'),
+                'n_bi' => rand(0,10)."LA".rand(0,10),
                 'permissao' => 'pcaadmin',
+                'nome_escola' => Str::random(10),
             ]
         );
     }

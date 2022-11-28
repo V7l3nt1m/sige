@@ -48,8 +48,6 @@ return [
 
     'username' => 'name',
 
-    'name' => 'name',
-
     'permissao' => 'permissao',
 
     /*

@@ -34,6 +34,6 @@ class Curso extends Model
 }
 
 public function classesFuncionariosTurmas(){
-    return $this->BelongsToMany('App\Models\Classe', 'App\Models\Funcionario', 'App\Models\Turma');
+    return $this->BelongsToMany('App\Models\Classe', 'App\Models\Funcionario', 'App\Models\Turma', 'App\Models\Disciplina');
 }
 }

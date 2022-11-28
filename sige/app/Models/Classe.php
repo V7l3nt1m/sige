@@ -35,7 +35,7 @@ class Classe extends Model
 }
 
 public function cursosFuncionariosTurmas(){
-    return $this->BelongsToMany('App\Models\Curso', 'App\Models\Funcionario', 'App\Models\Turma');
+    return $this->BelongsToMany('App\Models\Curso', 'App\Models\Funcionario', 'App\Models\Turma', 'App\Models\Disciplina');
 }
 }
 

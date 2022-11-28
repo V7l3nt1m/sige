@@ -15,15 +15,15 @@ return new class extends Migration
     {
         Schema::create('alunos', function (Blueprint $table) {
             $table->id()->increments();
-            $table->string('num_processo');
+            $table->string('num_processo')->unique();
             $table->string('nome_aluno');
             $table->dateTime('data_nasc');
-            $table->string('email_aluno');
-            $table->string('telefone_aluno');
+            $table->string('email_aluno')->unique();
+            $table->string('telefone_aluno')->unique();
+            $table->string('n_bi')->unique();
             $table->string('genero');
-            $table->double('nota_aluno')->nullable();
             $table->float('num_faltas',3)->nullable();
-            $table->boolean('estado_aprovado')->nullable();
+            $table->string('estado_aprovado')->nullable();
             $table->double('propina')->nullable();
             $table->string('imagem_aluno');
             $table->string('senha_aluno');

@@ -3,11 +3,10 @@
 
 <head>
   <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>SIGE</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+  
 
   
   <!-- Google Fonts -->
@@ -23,6 +22,7 @@
   <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <link href="assets/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="/template/style.css">
 
 
 </head>
@@ -34,6 +34,7 @@
     <div class="container d-flex align-items-center">
 
       <h1 class="logo me-auto"><a href="/">SIGE</a></h1>
+      <a href="https://med.gov.ao/ao/"><img src="/assets/img/ministerio.png" alt="ministerio da educacao" id="img_logo_escola"></a>
       <!-- Uncomment below if you prefer to use an image logo -->
       <!-- <a href="index.html" class="logo me-auto"><img src="assets/img/logo.png" alt="" class="img-fluid"></a>-->
 
@@ -155,8 +156,11 @@
             <p>
               Distrito Urbano do Ngola Kiluange <br>
               Municipio de Luanda <br><br>
-              <strong>Phone:</strong> +244 927 86 01 91 / +244 930 76 22 36<br>
-              <strong>Phone:</strong> +244 936 82 02 25 / +244 911 80 33 75<br>
+              <strong>Terminais Telefonicos:</strong><br>
+              +244 927 86 01 91 <br>
+              +244 930 76 22 36 <br>
+              +244 936 82 02 25 <br>
+              +244 911 80 33 75<br>
               <strong>Email:</strong> webgeniussoftware@gmail.com<br>
             </p>
           </div>
@@ -164,8 +168,7 @@
           <div class="col-lg-3 col-md-6 footer-links col-sm-6 col-6">
             <h4>Links Úteis</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="http://webgenius.net/webgenius">http://webgenius.net/webgenius</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Sobre nós</a></li>
+              <li><i class="bx bx-chevron-right"></i><a style="color: black" href="http://webgenius.net/webgenius"><u>Webgenius</u></a></li>
 
             </ul>
           </div>

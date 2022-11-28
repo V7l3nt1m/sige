@@ -32,7 +32,7 @@
     @method('POST')
 
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
           <select name="nome_turma" id="" class="select2" data-minimum-results-for-search="Infinity">
             <option value="" selected disabled>Turma</option>
                 @foreach($turmas as $turma)
@@ -40,7 +40,7 @@
                 @endforeach
            </select>
         </div>
-         <div class="col-md-4">
+         <div class="col-md-3">
            <select name="nome_classe" id="" class="select2" data-minimum-results-for-search="Infinity">
             <option value="" selected disabled>Classe</option>
                 @foreach($classes as $classe)
@@ -48,7 +48,7 @@
                 @endforeach
            </select>
          </div>
-         <div class="col-md-4">
+         <div class="col-md-3">
            <select name="nome_curso" id="" class="select2" data-minimum-results-for-search="Infinity">
             <option value="" selected disabled>Curso</option>
                 @foreach($cursos as $curso)
@@ -56,6 +56,14 @@
                 @endforeach
            </select>
          </div>
+         <div class="col-md-3">
+          <select name="disciplina" id="" class="select2" data-minimum-results-for-search="Infinity">
+           <option value="" selected disabled>Disciplina</option>
+               @foreach($disciplinas as $disciplina)
+                     <option value="{{$disciplina->nome_disc}}">{{$disciplina->nome_disc}}</option>
+               @endforeach
+          </select>
+        </div>
       </div>
       <br>
     <input type="submit" class="btn btn-success" value="Adicionar">
